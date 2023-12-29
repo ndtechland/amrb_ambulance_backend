@@ -1,0 +1,134 @@
+﻿@model IEnumerable<AMBRD.Models.ViewModels.AmbulanceDTO>
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string role = AMBRD.Utilities.UserIdentity.UserRole;
+    int i = 1;
+}
+ 
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar">
+                <!-- Sidebar content here -->
+            </div>
+            <!-- Page Sidebar Ends-->
+            <div class="page-body">
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>Ambulance List</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Registrations List</li>
+                                    <li class="breadcrumb-item active">Ambulance</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+                <!-- Container-fluid starts-->
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="btn-popup pull-right">
+                                        <a href="/Ambulance/AddAmbulance" class="btn btn-secondary" data-original-title="test">Add More</a>
+                                    </div>                                    
+
+                                        <div class="card-body">
+                                            <table class="display" id="basic-1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S#</th>
+                                                        <th>Vehicle Name</th>
+                                                        <th>Vehicle Number</th>
+                                                        <th>Ownership Name</th>
+                                                        <th>Vehicle Type</th> 
+                                                        <th style="display:none;">Driver Charges</th>
+                                                        <th>Approval</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                @*@if (Model.Count() > 0)
+                                                {*@
+                                                    <tbody>
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@i</td>
+                                                                <td>@item.VehicleName</td>
+                                                                <td>@item.VehicleNumber</td>
+                                                                <td>@item.VehicleOwnerName</td>
+                                                                <td>@item.VehicleTypeName</td>
+
+                                                                <td style="display:none;">@item.DriverCharges</td>
+                                                                 
+                                                                <td>
+                                                                    @if ((bool)item.IsApproved)
+                                                                    {
+                                                                        <a href="/Ambulance/UpdateApproveStatus?id=@item.Id" class="link-button edit-state">
+                                                                            <i class="fa fa-check me-2 font-success"></i>
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href="/Ambulance/UpdateApproveStatus?id=@item.Id" class="link-button edit-state">
+                                                                            <i class="fa fa-close me-2 font-danger"></i>
+                                                                        </a>
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <div>
+                                                                        <a href="/Ambulance/EditAmbulance?id=@item.Id" class="link-button edit-state" onclick="return confirm('Are you sure you want to edit?');">
+                                                                            <i class="fa fa-edit me-2 font-secondary"></i>
+                                                                        </a>
+                                                                        <a href="/Ambulance/DeleteAmbulance?id=@item.Id" class="link-button" onclick="return confirm('Are you sure you want to delete?');">
+                                                                            <i class="fa fa-trash font-danger"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            i++;
+                                                        }
+                                                    </tbody>
+                                                @*}
+                                                else
+                                                {
+                                                    <h6 style="color: red;">@TempData["msg"]</h6>
+                                                }*@
+                                            </table>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            alert(successMessage);
+        } 
+    });
+    </script>
+ 
+     

@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-wrapper">
+
+
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+        <div class="page-sidebar">
+
+        </div>
+
+        <div class="page-body">
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>
+                                    Dashboard
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Hospital/All">
+                            <div class="card o-hidden  widget-cards">
+                                <div class="bg-secondary card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Hospital</span> 
+                                            <h3 class="mb-0"><span class="counter">@ViewBag.HospitalCount</span><small> Hospital Registration</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i class="fa fa-hospital-o fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Ambulance/All">
+                            <div class="card o-hidden widget-cards">
+                                <div class="bg-primary card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Ambulance</span> 
+                                            <h3 class="mb-0"><span class="counter">@ViewBag.AmbulanceCount</span><small>Ambulance Registration</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i class="fa fa-ambulance fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Driver/All">
+                            <div class="card o-hidden widget-cards">
+                                <div class="bg-success card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Driver</span> 
+                                            <h3 class="mb-0"><span class="counter">@ViewBag.DriverCount</span><small> Driver Registration</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i data-feather="navigation"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Patient/All">
+                            <div class="card o-hidden widget-cards">
+                                <div class="bg-secondary card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Patient</span> 
+                                            <h3 class="mb-0"><span class="counter">@ViewBag.PatientCount</span><small> User Registration</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i data-feather="users"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Ambulance/VehicleAllotment">
+                            <div class="card o-hidden widget-cards">
+                                <div class="bg-danger card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Swap Vehicle</span>
+                                            <h3 class="mb-0">@*<span class="counter">@ViewBag.PatientCount</span>*@<small>Old Driver</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i class="fa fa-exchange fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <a href="/Ambulance/UpdateVehicle">
+                            <div class="card o-hidden widget-cards">
+                                <div class="bg-info card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body">
+                                            <span class="m-0" style="font-family: Poppins ;">Allote Vehicle</span> 
+                                            <h3 class="mb-0">@*<span class="counter">@ViewBag.PatientCount</span>*@<small>New Driver</small></h3>
+                                        </div>
+                                        <div class="icons-widgets">
+                                            <i class="fa fa-exchange fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+        </div>
+    </div>
+</div>
+

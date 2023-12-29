@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="abdul_amurdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AboutContent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageFile" Type="nvarchar(max)" />
+    <Property Name="Heading" Type="nvarchar" MaxLength="255" />
+    <Property Name="Paragraph" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AboutContentServices">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AboutContentID" Type="int" />
+    <Property Name="Service" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="Role" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="250" />
+    <Property Name="Confirmpassword" Type="nvarchar" MaxLength="250" />
+    <Property Name="Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="OTP" Type="int" />
+    <Property Name="DeviceId" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Ambulance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="VehicleNumber" Type="nvarchar" MaxLength="200" />
+    <Property Name="VehicleName" Type="nvarchar" MaxLength="250" />
+    <Property Name="VehicleOwnerName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Driver_Id" Type="int" />
+    <Property Name="VehicleCat_Id" Type="int" />
+    <Property Name="VehicleType_Id" Type="int" />
+    <Property Name="Validity" Type="datetime" />
+    <Property Name="InsurranceDate" Type="datetime" />
+    <Property Name="PollutionDate" Type="datetime" />
+    <Property Name="DriverCharges" Type="float" />
+    <Property Name="VehicleImg" Type="nvarchar(max)" />
+    <Property Name="CancelChequeFile" Type="nvarchar(max)" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="IFSCCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="HolderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RCImage" Type="nvarchar(max)" />
+    <Property Name="RC_Validity" Type="datetime" />
+    <Property Name="RC_Number" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="BankDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login_Id" Type="int" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IFSCCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BranchAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="HolderName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CancelCheque" Type="nvarchar(max)" />
+    <Property Name="isverified" Type="bit" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannerImage" Type="nvarchar(max)" />
+    <Property Name="Heading" Type="nvarchar" MaxLength="250" />
+    <Property Name="Paragraph" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Heading" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="200" />
+    <Property Name="BookingDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="250" />
+    <Property Name="State_Id" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="CommissionMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Commission" Type="float" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Message" Type="text" Nullable="false" />
+    <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="AdminLogin_Id" Type="int" />
+    <Property Name="DriverName" Type="nvarchar" MaxLength="200" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="200" />
+    <Property Name="StateMaster_Id" Type="int" />
+    <Property Name="CityMaster_Id" Type="int" />
+    <Property Name="Location" Type="nvarchar" MaxLength="250" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="200" />
+    <Property Name="DriverImage" Type="nvarchar(max)" />
+    <Property Name="DlImage" Type="nvarchar(max)" />
+    <Property Name="DlNumber" Type="nvarchar" MaxLength="200" />
+    <Property Name="DlImage1" Type="nvarchar(max)" />
+    <Property Name="DlImage2" Type="nvarchar(max)" />
+    <Property Name="DlImage3" Type="nvarchar(max)" />
+    <Property Name="DlValidity" Type="datetime" />
+    <Property Name="PanNumbar" Type="nvarchar" MaxLength="200" />
+    <Property Name="PanImage" Type="nvarchar(max)" />
+    <Property Name="AadharNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="AadharImage" Type="nvarchar(max)" />
+    <Property Name="AadharImage2" Type="nvarchar(max)" />
+    <Property Name="VehicleType_Id" Type="int" />
+    <Property Name="JoiningDate" Type="datetime" />
+    <Property Name="charge" Type="int" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Long" Type="float" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Ambulance_Id" Type="int" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DriverBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Driver_Id" Type="int" />
+    <Property Name="Patient_Id" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DriverLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Driver_Id" Type="int" />
+    <Property Name="Lat_Driver" Type="float" />
+    <Property Name="Lang_Driver" Type="float" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="key" Type="bit" />
+    <Property Name="AmbulanceType_id" Type="int" />
+    <Property Name="VehicleType_id" Type="int" />
+    <Property Name="end_Lat" Type="float" />
+    <Property Name="end_Long" Type="float" />
+    <Property Name="start_Lat" Type="float" />
+    <Property Name="start_Long" Type="float" />
+    <Property Name="Status" Type="char" MaxLength="1" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsPay" Type="char" MaxLength="1" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalPrice" Type="int" />
+    <Property Name="TotalDistance" Type="int" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="RejectedStatus" Type="bit" />
+    <Property Name="NoOfPassengers" Type="int" />
+    <Property Name="offer" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsBooked" Type="bit" />
+    <Property Name="NearDriverId" Type="int" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="HospitalName" Type="nvarchar" MaxLength="250" />
+    <Property Name="StateMaster_Id" Type="int" />
+    <Property Name="CityMaster_Id" Type="int" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="LandlineNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="250" />
+    <Property Name="Location" Type="nvarchar" MaxLength="250" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="HospitalId" Type="nvarchar" MaxLength="250" />
+    <Property Name="AdminLogin_Id" Type="int" />
+    <Property Name="HospitalImage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="NearDriver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DriverId" Type="int" />
+    <Property Name="KM" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="DL" Type="varchar" MaxLength="50" />
+    <Property Name="Charge" Type="int" />
+    <Property Name="TotalPrice" Type="int" />
+    <Property Name="DeviceId" Type="varchar(max)" />
+    <Property Name="TotalDistance" Type="int" />
+  </EntityType>
+  <EntityType Name="OtherService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OurService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="AdminLogin_Id" Type="int" />
+    <Property Name="PatientRegNo" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="PatientName" Type="nvarchar" MaxLength="200" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="250" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateMaster_Id" Type="int" />
+    <Property Name="CityMaster_Id" Type="int" />
+    <Property Name="Location" Type="nvarchar" MaxLength="250" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reg_Date" Type="datetime" />
+    <Property Name="walletAmount" Type="float" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="20" />
+    <Property Name="DOB" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StateMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Testimonial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserOfferPrice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Driver_Id" Type="int" />
+    <Property Name="Patient_Id" Type="int" />
+    <Property Name="OfferPrice" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsAccepted" Type="bit" />
+  </EntityType>
+  <EntityType Name="VehicleCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Type" Type="nvarchar" MaxLength="200" />
+    <Property Name="AmbulanceType_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="VehicleTypeName" Type="nvarchar" MaxLength="2000" />
+    <Property Name="VehicleCatId" Type="int" />
+    <Property Name="under0_2KM" Type="float" />
+    <Property Name="under3_8KM" Type="float" />
+    <Property Name="under9_15KM" Type="float" />
+    <Property Name="under16_25KM" Type="float" />
+    <Property Name="under26_40KM" Type="float" />
+    <Property Name="under41_60KM" Type="float" />
+    <Property Name="under61_80KM" Type="float" />
+    <Property Name="under81_110KM" Type="float" />
+    <Property Name="under111_150KM" Type="float" />
+    <Property Name="under151_200KM" Type="float" />
+    <Property Name="under201_250KM" Type="float" />
+    <Property Name="under251_300KM" Type="float" />
+    <Property Name="under301_350KM" Type="float" />
+    <Property Name="under401_450KM" Type="float" />
+    <Property Name="under451_500KM" Type="float" />
+    <Property Name="Above500KM" Type="float" />
+    <Property Name="VehicleImage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PatientComplaints">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subjects" Type="nvarchar" MaxLength="100" />
+    <Property Name="Complaints" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsResolved" Type="bit" />
+    <Property Name="Others" Type="nvarchar" MaxLength="100" />
+    <Property Name="Login_Id" Type="int" />
+    <Property Name="Roles" Type="nvarchar" MaxLength="100" />
+    <Property Name="ComplaintDate" Type="datetime" />
+    <Property Name="patsubid" Type="int" />
+  </EntityType>
+  <Association Name="FK_AboutContentServices_AboutContent">
+    <End Role="AboutContent" Type="Self.AboutContent" Multiplicity="0..1" />
+    <End Role="AboutContentServices" Type="Self.AboutContentServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AboutContent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AboutContentServices">
+        <PropertyRef Name="AboutContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK3FEDF2CCD115CB1A">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityMaster">
+        <PropertyRef Name="State_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeleteNearDriver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="abdul_amurd" />
+  <Function Name="GetNearDriver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="abdul_amurd">
+    <Parameter Name="DriverId" Type="int" Mode="In" />
+    <Parameter Name="KM" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="DL" Type="varchar" Mode="In" />
+    <Parameter Name="Charge" Type="int" Mode="In" />
+    <Parameter Name="DeviceId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalDistance" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="abdul_amurdModelStoreContainer">
+    <EntitySet Name="AboutContent" EntityType="Self.AboutContent" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="AboutContentServices" EntityType="Self.AboutContentServices" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Ambulance" EntityType="Self.Ambulance" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="BankDetails" EntityType="Self.BankDetails" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Banner" EntityType="Self.Banner" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="CommissionMaster" EntityType="Self.CommissionMaster" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Driver" EntityType="Self.Driver" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="DriverBooking" EntityType="Self.DriverBooking" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="DriverLocation" EntityType="Self.DriverLocation" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Hospital" EntityType="Self.Hospital" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="NearDriver" EntityType="Self.NearDriver" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="OtherService" EntityType="Self.OtherService" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="OurService" EntityType="Self.OurService" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="Testimonial" EntityType="Self.Testimonial" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="UserOfferPrice" EntityType="Self.UserOfferPrice" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="VehicleCategory" EntityType="Self.VehicleCategory" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="PatientComplaints" EntityType="Self.PatientComplaints" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AboutContentServices_AboutContent" Association="Self.FK_AboutContentServices_AboutContent">
+      <End Role="AboutContent" EntitySet="AboutContent" />
+      <End Role="AboutContentServices" EntitySet="AboutContentServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK3FEDF2CCD115CB1A" Association="Self.FK3FEDF2CCD115CB1A">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="CityMaster" EntitySet="CityMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

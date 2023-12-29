@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<style>
+    .field-icon {
+        float: right;
+        margin-right: 10px;
+        margin-top: -28px;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .toggle-password-hidden {
+        display: none;
+    }
+
+</style> 
+ 
+<div class="page-wrapper">
+    <div class="authentication-box">
+        <div class="container">
+            <div class="row">
+                @*<div class="col-md-5 p-0 card-left" >
+                        <div class="card bg-primary" style=" height:400px;">
+
+
+                                <img src="~/Images/ambrdlogo-removebg-preview.png" style="width: 161px;margin-left: 47px;"/>
+
+
+
+                            <div class="single-item">
+                                <div>
+                                    <div>
+                                        <h3>Welcome to AMBRD</h3>
+                                        <p>
+                                            The app’s backend system promptly processes the request and sends it to the nearest available ambulance drivers in the vicinity.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <h3>Welcome to AMBRD</h3>
+                                        <p> Ambulance drivers equipped with the app receive the request notification and get to accept or decline based on their proximity and availability.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <h3>Welcome to AMBRD</h3>
+                                        <p> Users can then track the real-time location of the dispatched ambulance and communicate directly with the driver for seamless coordination. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <center>
+                    <div class="col-md-7 p-0 card-right">
+                        <div class="card tab2-card">
+                            <div class="card-body" style="box-shadow: 1px 1px 9px;">
+                                @using (Html.BeginForm("Login", "Default", FormMethod.Post))
+                                {
+                                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="top-profile-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-profile" aria-selected="true"><span class="icon-user me-2"></span>Login</a>
+                                        </li>
+                                        <li class="nav-item"> 
+                                            <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span>Register</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="top-tabContent">
+                                        <div class="tab-pane fade show active" id="top-profile" role="tabpanel" aria-labelledby="top-profile-tab">
+                                            <form class="form-horizontal auth-form">
+                                                <div class="form-group"> 
+                                                    <input type="text" ng-model="user.UserID" id="Username" name="UserID" placeholder="UserName" class="form-control span12" required />
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" ng-model="user.Password" id="Password" name="Password" placeholder="Password" class="form-control span12" required />
+                                                    <span class="fa fa-fw fa-eye field-icon toggle-password-visible"></span>
+                                                    <span class="fa fa-fw fa-eye-slash field-icon toggle-password-hidden"></span>
+
+                                                </div>
+                                                <div class="form-terms">
+                                                    <div class="custom-control custom-checkbox mr-sm-2"> 
+                                                        <a href="/Default/ForgotPassword" class="btn btn-default forgot-pass" style="color: #00baf2; ">Forgot password?</a>
+                                                    </div>
+                                                </div>
+                                                @if (TempData["msg"] != null)
+                                                {
+                                                    string msg = TempData["msg"].ToString();
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @if (msg == "ok")
+                                                            {
+                                                                <div class="alert alert-success">
+                                                                    Instructions on how to reset your password have been sent to your email.
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="alert alert-danger">
+                                                                    @msg
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                <div class=" row">
+                                                    <div class="form-button">
+                                                        <input type="submit" class="btn btn-primary" value="Sign In" />
+
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                         
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </center>
+
+            </div> 
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.toggle-password-visible').addEventListener('click', function () {
+        var passwordInput = document.querySelector('#Password');
+        passwordInput.type = 'password';
+        this.style.display = 'none';
+        document.querySelector('.toggle-password-hidden').style.display = 'inline-block';
+    });
+
+    document.querySelector('.toggle-password-hidden').addEventListener('click', function () {
+        var passwordInput = document.querySelector('#Password');
+        passwordInput.type = 'text';
+        this.style.display = 'none';
+        document.querySelector('.toggle-password-visible').style.display = 'inline-block';
+    });
+</script>
+

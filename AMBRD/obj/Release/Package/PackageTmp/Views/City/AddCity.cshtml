@@ -1,0 +1,106 @@
+﻿@model AMBRD.Models.ViewModels.CityDTO
+@{
+    ViewBag.Title = "AddCity";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-sidebar">
+
+            </div>
+
+            <div class="page-body"> 
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Add District
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Master Entries</li>
+                                    <li class="breadcrumb-item active">Add City</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-6">
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Saved Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">State</label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.DropDownListFor(a => a.State_Id, Model.States, "--Select State--", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">City Name</label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.CityName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+                                                <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                                <a href="/City/Citylist" class="btn btn-secondary" data-original-title="test" style="margin-top:5px;">Show All</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+

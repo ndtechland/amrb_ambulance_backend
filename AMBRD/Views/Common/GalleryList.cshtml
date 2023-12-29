@@ -1,0 +1,108 @@
+﻿@model AMBRD.Models.ViewModels.GalleryDTO
+@{
+    ViewBag.Title = "GalleryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 1;
+}
+
+ 
+<div class="page-wrapper">
+    <div class="page-body-wrapper"> 
+        <div class="page-sidebar">
+
+        </div> 
+        <div class="page-body"> 
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>
+                                    Gallery 
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item">Gallery</li>
+                                <li class="breadcrumb-item active">Gallery List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="btn-popup pull-right">
+                                    <a href="/Common/AddGallery" class="btn btn-secondary" data-original-title="test">Add Gallery</a>
+
+                                </div>
+
+                                @if (Model.Gallerylist == null)
+                                {
+                                    if (TempData["msg"] != null)
+                                    {
+                                        <h2 style="color: red;">@TempData["msg"]</h2>
+                                    }
+                                }
+                                else
+                                {
+                                    @*<div class="card-body vendor-table">*@
+                                    <div class="card-body ">
+                                        <table class="display" id="basic-1">
+                                            <thead>
+                                                <tr>
+                                                    <th>S#</th> 
+                                                    <th>Image</th>
+                                                    <th>Content</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Gallerylist)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td> 
+                                                        <td>
+                                                            <img src="~/Images/@item.Image" width="80" height="70" />
+                                                        </td>
+                                                        <td>@item.Content</td>
+                                                        <td>
+                                                            <div>
+
+                                                                <a href="/Common/DeleteGallery?id=@item.Id" class="link-button" onclick="return confirm('Are you sure you want to delete?');">
+                                                                    <i class="fa fa-trash font-danger"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    i++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            alert(successMessage);
+        }
+    });
+</script>
+

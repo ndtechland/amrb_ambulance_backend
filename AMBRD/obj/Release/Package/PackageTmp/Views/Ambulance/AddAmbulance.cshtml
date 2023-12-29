@@ -1,0 +1,199 @@
+﻿@model AMBRD.Models.ViewModels.AmbulanceDTO
+@{
+    ViewBag.Title = "AddAmbulance";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddAmbulance", "Ambulance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-sidebar">
+
+            </div>
+
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Add Ambulance
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Registration </li>
+                                    <li class="breadcrumb-item active">Ambulance</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Register Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Vehicle Name<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.VehicleName, new { type = "text", @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Vehicle Image <span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.VehicleCImageFileBase64, new { @class = "form-control", type = "file", required = "required" })
+                                                <span class="red">
+                                                    @Html.ValidationMessageFor(a => a.VehicleImg)
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Vehicle Number<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.VehicleNumber, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group row">
+            <div class="col-xl-3 col-md-4">
+                <label for="validationCustom2">Vehicle Category<span>*</span></label>
+            </div>
+            <div class="col-xl-8 col-md-7">
+                @Html.DropDownListFor(a => a.VehicleCat_Id, Model.CategoryList, "--Select Category--", new { @class = "form-control", id = "Cat_Id" })
+                <span class="red">
+                    @Html.ValidationMessageFor(a => a.VehicleCat_Id)
+                </span>
+            </div>
+        </div>*@
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Vehicle Type<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.DropDownListFor(a => a.VehicleType_Id, Model.VehicleTypes, "--Select Type--", new { @class = "form-control", required = "required" })
+                                                <span class="red">
+                                                    @Html.ValidationMessageFor(a => a.VehicleType_Id)
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Owner Name<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.VehicleOwnerName, new { @class = "form-control" })
+                                            </div>
+                                        </div> 
+                                        @*<div class="form-group row" style=" display:none">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Driver Charge<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.DriverCharges, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>*@
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Account Number<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.AccountNo, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Ifsc Code<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.IFSCCode, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Registration Certificate Image <span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.RCImageFileBase64, new { @class = "form-control", type = "file", required = "required" })
+                                                <span class="red">
+                                                    @Html.ValidationMessageFor(a => a.RCImage)
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Registration Certificate Number<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.RC_Number, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Registration Certificate Validity<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.RC_Validity, new { @class = "form-control", type = "date" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+
+                                                <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+
+
+ 

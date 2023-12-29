@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="abdul_amurdModelStoreContainer" CdmEntityContainer="abdul_amurdEntities11">
+    <EntitySetMapping Name="AboutContents">
+      <EntityTypeMapping TypeName="abdul_amurdModel.AboutContent">
+        <MappingFragment StoreEntitySet="AboutContent">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Paragraph" ColumnName="Paragraph" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AboutContentServices">
+      <EntityTypeMapping TypeName="abdul_amurdModel.AboutContentService">
+        <MappingFragment StoreEntitySet="AboutContentServices">
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="AboutContentID" ColumnName="AboutContentID" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminLogins">
+      <EntityTypeMapping TypeName="abdul_amurdModel.AdminLogin">
+        <MappingFragment StoreEntitySet="AdminLogin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Confirmpassword" ColumnName="Confirmpassword" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ambulances">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Ambulance">
+        <MappingFragment StoreEntitySet="Ambulance">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+          <ScalarProperty Name="VehicleOwnerName" ColumnName="VehicleOwnerName" />
+          <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+          <ScalarProperty Name="VehicleCat_Id" ColumnName="VehicleCat_Id" />
+          <ScalarProperty Name="VehicleType_Id" ColumnName="VehicleType_Id" />
+          <ScalarProperty Name="Validity" ColumnName="Validity" />
+          <ScalarProperty Name="InsurranceDate" ColumnName="InsurranceDate" />
+          <ScalarProperty Name="PollutionDate" ColumnName="PollutionDate" />
+          <ScalarProperty Name="DriverCharges" ColumnName="DriverCharges" />
+          <ScalarProperty Name="VehicleImg" ColumnName="VehicleImg" />
+          <ScalarProperty Name="CancelChequeFile" ColumnName="CancelChequeFile" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+          <ScalarProperty Name="HolderName" ColumnName="HolderName" />
+          <ScalarProperty Name="RCImage" ColumnName="RCImage" />
+          <ScalarProperty Name="RC_Validity" ColumnName="RC_Validity" />
+          <ScalarProperty Name="RC_Number" ColumnName="RC_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankDetails">
+      <EntityTypeMapping TypeName="abdul_amurdModel.BankDetail">
+        <MappingFragment StoreEntitySet="BankDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+          <ScalarProperty Name="HolderName" ColumnName="HolderName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="CancelCheque" ColumnName="CancelCheque" />
+          <ScalarProperty Name="isverified" ColumnName="isverified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Paragraph" ColumnName="Paragraph" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blogs">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Blog">
+        <MappingFragment StoreEntitySet="Blog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="abdul_amurdModel.CityMaster">
+        <MappingFragment StoreEntitySet="CityMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactUs">
+      <EntityTypeMapping TypeName="abdul_amurdModel.ContactU">
+        <MappingFragment StoreEntitySet="ContactUs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drivers">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Driver">
+        <MappingFragment StoreEntitySet="Driver">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="AdminLogin_Id" ColumnName="AdminLogin_Id" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="StateMaster_Id" ColumnName="StateMaster_Id" />
+          <ScalarProperty Name="CityMaster_Id" ColumnName="CityMaster_Id" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="DriverImage" ColumnName="DriverImage" />
+          <ScalarProperty Name="DlImage" ColumnName="DlImage" />
+          <ScalarProperty Name="DlNumber" ColumnName="DlNumber" />
+          <ScalarProperty Name="DlImage1" ColumnName="DlImage1" />
+          <ScalarProperty Name="DlImage2" ColumnName="DlImage2" />
+          <ScalarProperty Name="DlImage3" ColumnName="DlImage3" />
+          <ScalarProperty Name="DlValidity" ColumnName="DlValidity" />
+          <ScalarProperty Name="PanNumbar" ColumnName="PanNumbar" />
+          <ScalarProperty Name="PanImage" ColumnName="PanImage" />
+          <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
+          <ScalarProperty Name="AadharImage" ColumnName="AadharImage" />
+          <ScalarProperty Name="AadharImage2" ColumnName="AadharImage2" />
+          <ScalarProperty Name="VehicleType_Id" ColumnName="VehicleType_Id" />
+          <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+          <ScalarProperty Name="charge" ColumnName="charge" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Long" ColumnName="Long" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Ambulance_Id" ColumnName="Ambulance_Id" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverLocations">
+      <EntityTypeMapping TypeName="abdul_amurdModel.DriverLocation">
+        <MappingFragment StoreEntitySet="DriverLocation">
+          <ScalarProperty Name="NearDriverId" ColumnName="NearDriverId" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+          <ScalarProperty Name="Lat_Driver" ColumnName="Lat_Driver" />
+          <ScalarProperty Name="Lang_Driver" ColumnName="Lang_Driver" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="AmbulanceType_id" ColumnName="AmbulanceType_id" />
+          <ScalarProperty Name="VehicleType_id" ColumnName="VehicleType_id" />
+          <ScalarProperty Name="end_Lat" ColumnName="end_Lat" />
+          <ScalarProperty Name="end_Long" ColumnName="end_Long" />
+          <ScalarProperty Name="start_Lat" ColumnName="start_Lat" />
+          <ScalarProperty Name="start_Long" ColumnName="start_Long" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsPay" ColumnName="IsPay" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="TotalDistance" ColumnName="TotalDistance" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="RejectedStatus" ColumnName="RejectedStatus" />
+          <ScalarProperty Name="NoOfPassengers" ColumnName="NoOfPassengers" />
+          <ScalarProperty Name="offer" ColumnName="offer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Galleries">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Gallery">
+        <MappingFragment StoreEntitySet="Gallery">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Hospital">
+        <MappingFragment StoreEntitySet="Hospital">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="StateMaster_Id" ColumnName="StateMaster_Id" />
+          <ScalarProperty Name="CityMaster_Id" ColumnName="CityMaster_Id" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="LandlineNumber" ColumnName="LandlineNumber" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="HospitalId" ColumnName="HospitalId" />
+          <ScalarProperty Name="AdminLogin_Id" ColumnName="AdminLogin_Id" />
+          <ScalarProperty Name="HospitalImage" ColumnName="HospitalImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NearDrivers">
+      <EntityTypeMapping TypeName="abdul_amurdModel.NearDriver">
+        <MappingFragment StoreEntitySet="NearDriver">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="KM" ColumnName="KM" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DL" ColumnName="DL" />
+          <ScalarProperty Name="Charge" ColumnName="Charge" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="TotalDistance" ColumnName="TotalDistance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherServices">
+      <EntityTypeMapping TypeName="abdul_amurdModel.OtherService">
+        <MappingFragment StoreEntitySet="OtherService">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OurServices">
+      <EntityTypeMapping TypeName="abdul_amurdModel.OurService">
+        <MappingFragment StoreEntitySet="OurService">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="AdminLogin_Id" ColumnName="AdminLogin_Id" />
+          <ScalarProperty Name="PatientRegNo" ColumnName="PatientRegNo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="StateMaster_Id" ColumnName="StateMaster_Id" />
+          <ScalarProperty Name="CityMaster_Id" ColumnName="CityMaster_Id" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="Reg_Date" ColumnName="Reg_Date" />
+          <ScalarProperty Name="walletAmount" ColumnName="walletAmount" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateMasters">
+      <EntityTypeMapping TypeName="abdul_amurdModel.StateMaster">
+        <MappingFragment StoreEntitySet="StateMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Testimonials">
+      <EntityTypeMapping TypeName="abdul_amurdModel.Testimonial">
+        <MappingFragment StoreEntitySet="Testimonial">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleCategories">
+      <EntityTypeMapping TypeName="abdul_amurdModel.VehicleCategory">
+        <MappingFragment StoreEntitySet="VehicleCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="AmbulanceType_Id" ColumnName="AmbulanceType_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleTypes">
+      <EntityTypeMapping TypeName="abdul_amurdModel.VehicleType">
+        <MappingFragment StoreEntitySet="VehicleType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+          <ScalarProperty Name="VehicleCatId" ColumnName="VehicleCatId" />
+          <ScalarProperty Name="under0_2KM" ColumnName="under0_2KM" />
+          <ScalarProperty Name="under3_8KM" ColumnName="under3_8KM" />
+          <ScalarProperty Name="under9_15KM" ColumnName="under9_15KM" />
+          <ScalarProperty Name="under16_25KM" ColumnName="under16_25KM" />
+          <ScalarProperty Name="under26_40KM" ColumnName="under26_40KM" />
+          <ScalarProperty Name="under41_60KM" ColumnName="under41_60KM" />
+          <ScalarProperty Name="under61_80KM" ColumnName="under61_80KM" />
+          <ScalarProperty Name="under81_110KM" ColumnName="under81_110KM" />
+          <ScalarProperty Name="under111_150KM" ColumnName="under111_150KM" />
+          <ScalarProperty Name="under151_200KM" ColumnName="under151_200KM" />
+          <ScalarProperty Name="under201_250KM" ColumnName="under201_250KM" />
+          <ScalarProperty Name="under251_300KM" ColumnName="under251_300KM" />
+          <ScalarProperty Name="under301_350KM" ColumnName="under301_350KM" />
+          <ScalarProperty Name="under401_450KM" ColumnName="under401_450KM" />
+          <ScalarProperty Name="under451_500KM" ColumnName="under451_500KM" />
+          <ScalarProperty Name="Above500KM" ColumnName="Above500KM" />
+          <ScalarProperty Name="VehicleImage" ColumnName="VehicleImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientComplaints">
+      <EntityTypeMapping TypeName="abdul_amurdModel.PatientComplaint">
+        <MappingFragment StoreEntitySet="PatientComplaints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Subjects" ColumnName="Subjects" />
+          <ScalarProperty Name="Complaints" ColumnName="Complaints" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsResolved" ColumnName="IsResolved" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+          <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="ComplaintDate" ColumnName="ComplaintDate" />
+          <ScalarProperty Name="patsubid" ColumnName="patsubid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteNearDriver" FunctionName="abdul_amurdModel.Store.DeleteNearDriver" />
+    <FunctionImportMapping FunctionImportName="GetNearDriver" FunctionName="abdul_amurdModel.Store.GetNearDriver">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="abdul_amurdModel.GetNearDriver_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="KM" ColumnName="KM" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DL" ColumnName="DL" />
+          <ScalarProperty Name="Charge" ColumnName="Charge" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="TotalDistance" ColumnName="TotalDistance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="UserOfferPrices">
+      <EntityTypeMapping TypeName="abdul_amurdModel.UserOfferPrice">
+        <MappingFragment StoreEntitySet="UserOfferPrice">
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+          <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+          <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverBookings">
+      <EntityTypeMapping TypeName="abdul_amurdModel.DriverBooking">
+        <MappingFragment StoreEntitySet="DriverBooking">
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+          <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommissionMasters">
+      <EntityTypeMapping TypeName="abdul_amurdModel.CommissionMaster">
+        <MappingFragment StoreEntitySet="CommissionMaster">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Commission" ColumnName="Commission" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

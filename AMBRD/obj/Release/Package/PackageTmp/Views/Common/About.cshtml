@@ -1,0 +1,134 @@
+﻿@model AMBRD.Models.ViewModels.AboutDTO
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("About", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="page-wrapper">
+
+
+        <div class="page-body-wrapper">
+
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar">
+
+            </div>
+
+
+            <div class="page-body">
+
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Add About Content
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">About</li>
+                                    <li class="breadcrumb-item active">Add About</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Image<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.ImageFileBase, new { type = "file", @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Heading<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.Heading, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Description<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextAreaFor(a => a.Paragraph, new { @class = "form-control", rows = "4" })
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom3">Services<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                <div id="serviceContainer" >
+                                                    <!-- Initial textbox for service name -->
+                                                    @Html.TextBoxFor(a => a.Services[0].Service, new { @class = "form-control" })
+                                                </div>
+                                                <button type="button" id="addServiceBtn" class="btn btn-secondary" style="margin-top: 10px;">
+                                                    <i class="fa fa-plus"></i> Add Service
+                                                </button>
+                                            </div> 
+                                        </div> 
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+
+                                                <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var serviceIndex = 1; // Initialize the service index for unique IDs
+
+        $("#addServiceBtn").click(function () {
+            var newServiceTextbox = $("<input>")
+                .attr("type", "text")
+                .attr("name", "Services[" + serviceIndex + "].Service")
+                .attr("class", "form-control");
+
+            // Append the new service textbox to the service container
+            $("#serviceContainer").append(newServiceTextbox);
+
+            serviceIndex++; // Increment the service index for the next textbox
+        });
+    });
+</script>
+

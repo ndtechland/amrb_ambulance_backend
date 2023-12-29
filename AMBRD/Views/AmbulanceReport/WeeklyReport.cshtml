@@ -1,0 +1,93 @@
+﻿@model AMBRD.Models.ViewModels.AmbulanceReportDTO
+@{
+    ViewBag.Title = "WeeklyRecord";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>DailyRecord</h2>
+
+<style>
+    #main {
+        margin: 6%;
+    }
+</style>
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <div class="page-sidebar">
+
+        </div>
+        <div class="page-body">
+            <div class="container-fluid">
+
+                @if (Model.AmbulanceYMWDRecord == null)
+                {
+                    if (TempData["msg"] != null)
+                    {
+                        <h2 style="color:blueviolet">
+                            @TempData["msg"]
+                        </h2>
+                    }
+                }
+                else
+                {
+                    <table id="tables" class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Patient Name
+                                </th>
+                                <th>
+                                    Driver Name
+                                </th>
+                                <th>
+                                    Distance
+                                </th>
+                                <th>
+                                    PickUp Address
+                                </th>
+                                <th>
+                                    Drop Address
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.AmbulanceYMWDRecord)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.PatientName
+                                    </td>
+                                    <td>
+                                        @item.DriverName
+                                    </td>
+                                    <td>
+                                        @Math.Round((double)item.Distance)
+                                    </td>
+                                    <td>
+                                        @item.ReverseStartLatLong_To_Location
+                                    </td>
+                                    <td>
+                                        @item.ReverseEndLatLong_To_Location
+                                    </td>
+                                    <td>@Math.Round((double)item.Amount) Rs.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/assets/js/jquery-3.3.1.min.js"></script>
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<script>
+        $(".datepicker").datepicker().datepicker('setdate', 'today');
+</script>

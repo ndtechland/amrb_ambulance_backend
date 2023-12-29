@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="594ee1d5848e4e32bfe1b8921684f569" Name="Diagram1">
+        <EntityTypeShape EntityType="abdul_amurdModel.AboutContent" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.AboutContentService" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.AdminLogin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Ambulance" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.BankDetail" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Banner" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Blog" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Booking" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.CityMaster" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.ContactU" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Driver" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.DriverLocation" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Gallery" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Hospital" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.NearDriver" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.OtherService" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.OurService" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Patient" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.StateMaster" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.Testimonial" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.VehicleCategory" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.VehicleType" Width="1.5" PointX="13.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="abdul_amurdModel.PatientComplaint" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="abdul_amurdModel.FK_AboutContentServices_AboutContent" ManuallyRouted="false" />
+        <AssociationConnector Association="abdul_amurdModel.FK3FEDF2CCD115CB1A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="abdul_amurdModel.UserOfferPrice" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="abdul_amurdModel.DriverBooking" Width="1.5" PointX="9.375" PointY="14.75" />
+        <EntityTypeShape EntityType="abdul_amurdModel.CommissionMaster" Width="1.5" PointX="11.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

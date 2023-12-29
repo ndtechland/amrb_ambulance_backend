@@ -1,0 +1,238 @@
+﻿@model AMBRD.Models.ViewModels.HospitalDTO
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Add", "Hospital", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-sidebar">
+
+            </div>
+
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Create User
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Registration </li>
+                                    <li class="breadcrumb-item active">Hospital</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Saved Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Hospital Name<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.HospitalName, new { type = "text", @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Hospital Image<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.HospitalImageFile, new { @class = "form-control", type = "file" })
+                                                <span class="red">
+                                                    @Html.ValidationMessageFor(a => a.HospitalImage)
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Mobile Number<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.MobileNumber, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Landline Number<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.LandlineNumber, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Email<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.EmailId, new { type = "email", @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Password<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.Password, new { type = "password", @class = "form-control", required = "required", id = "password" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Confirm Password<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.ConfirmPassword, new { type = "password", @class = "form-control", required = "required", id = "confirmPassword" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">State<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.DropDownListFor(a => a.StateMaster_Id, Model.States, "--Select State--", new { @class = "form-control", required = "required" })
+                                                <span class="red">
+                                                    @Html.ValidationMessageFor(a => a.StateMaster_Id)
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">District<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @{ Html.EnableClientValidation(false);}
+                                                @Html.DropDownListFor(a => a.CityMaster_Id,
+                                Enumerable.Empty<SelectListItem>()
+                                , "--Select District--", new { @class = "form-control", required = "required" })
+                                                <span class="red">
+
+                                                    @Html.ValidationMessageFor(a => a.CityMaster_Id)
+                                                    @{ Html.EnableClientValidation(true);}
+
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Location<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.Location, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Pincode<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.PinCode, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+
+                                                <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAVJ6WcbMb96HxFwYJTgo3a00yxYj-ha80"></script>
+<script>
+    $("#StateMaster_Id").change(function () {
+        var stateId = $(this).val();
+        var city = $("#CityMaster_Id");
+        city.empty();
+        city.append("<option value=''>--Select District--</option>");
+        $.ajax({
+            url: '/Common/GetCitiesByState?stateId=' + stateId,
+            type: 'get',
+            success: function (response) {
+                $.each(response, function (key, val) {
+                    city.append("<option value='" + val.Id + "'>" + val.CityName + "</option>");
+                });
+            },
+            error: function (error) {
+                console.log(error.responseText);
+            }
+        });
+    });
+
+    
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("form").submit(function (e) {
+            var password = $("#password").val();
+            var confirmPassword = $("#confirmPassword").val();
+
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match.");
+                e.preventDefault();  
+            }
+        });
+    });
+</script>
+

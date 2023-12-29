@@ -1,0 +1,113 @@
+﻿@model AMBRD.Models.ViewModels.BlogDTO
+@{
+    ViewBag.Title = "AddBlog";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("AddBlog", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar">
+
+            </div>
+            <div class="page-body">
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Add Blog
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Blog</li>
+                                    <li class="breadcrumb-item active">Add Blog</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Saved Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Image<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.ImageFile, new { type = "file", @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2"> Title<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.Title, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label for="validationCustom2">Heading<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextBoxFor(a => a.Heading, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row editor-label">
+                                            <div class="col-xl-3 col-md-4">
+                                                <label>Description<span>*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 col-md-7">
+                                                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", rows = "4" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+                                                <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+            </div>
+        </div>
+    </div>
+
+}

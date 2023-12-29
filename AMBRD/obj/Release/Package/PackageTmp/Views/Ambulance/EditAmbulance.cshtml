@@ -1,0 +1,205 @@
+﻿@model AMBRD.Models.ViewModels.AmbulanceDTO
+@{
+    ViewBag.Title = "EditAmbulance";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("EditAmbulance", "Ambulance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(a => a.Id)
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-sidebar">
+
+            </div>
+
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Update Ambulance Detail
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item">Registrations List </li>
+                                    <li class="breadcrumb-item active">Ambulance</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">                            
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="/Ambulance/All" class="btn btn-secondary" data-original-title="test" style=" margin-top:-4%;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Saved Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <fieldset style="border: 1px solid #000;">
+                                            <legend>Basic Detail</legend>
+                                            <div class="form-group row editor-label">
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label>Vehicle Name<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.VehicleName, new { type = "text", @class = "form-control", required = "required" })
+                                                </div>
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Vehicle Number<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.VehicleNumber, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            @*<div class="form-group row">
+                    <div class="col-xl-3 col-md-4">
+                        <label for="validationCustom2">Vehicle Category<span>*</span></label>
+                    </div>
+                    <div class="col-xl-3 col-md-7">
+                        @Html.DropDownListFor(a => a.VehicleCat_Id, Model.CategoryList, "--Select Category--", new { @class = "form-control", id = "Cat_Id" })
+                        <span class="red">
+                            @Html.ValidationMessageFor(a => a.VehicleCat_Id)
+                        </span>
+                    </div>
+                    <div class="col-xl-3 col-md-4">
+                        <label for="validationCustom2">Vehicle Type<span>*</span></label>
+                    </div>
+                    <div class="col-xl-3 col-md-7">
+                        @Html.DropDownListFor(model => model.VehicleType_Id, Model.VehicleTypelist, "--Select Type--", new { @class = "form-control" })
+
+                    </div>
+                </div>*@
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Owner Name<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.VehicleOwnerName, new { @class = "form-control" })
+                                                </div>
+
+                                                @*<div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Driver Charge<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.DriverCharges, new { @class = "form-control", required = "required" })
+                                                </div>*@
+                                            </div>
+
+
+                                        </fieldset>
+
+                                        <legend>Bank Detail</legend>
+                                        <fieldset style="border: 1px solid #000;">
+
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Account Number<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.AccountNo, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Bank Name<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.BranchName, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Address<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.BranchAddress, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Account's Holder Name<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.HolderName, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-md-4">
+                                                    <label for="validationCustom2">Ifsc Code<span>*</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-md-7">
+                                                    @Html.TextBoxFor(a => a.IFSCCode, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <div class="form-group mb-0">
+                                            <div class="product-buttons text-center">
+
+                                                <input type="submit" value="Update" class="btn btn-secondary" style="margin-top:5px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Cat_Id").change(function () {
+            debugger
+            var catId = $(this).val();
+            var city = $("#VehicleType_Id");
+            city.empty();
+            city.append("<option value=''>--Select Type--</option>");
+            $.ajax({
+                url: '/Common/GetVehicleTypeByCat?catId=' + catId,
+                type: 'get',
+                success: function (response) {
+                    $.each(response, function (key, val) {
+                        city.append("<option value='" + val.Id + "'>" + val.VehicleTypeName + "</option>");
+                    });
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+        });
+    });
+</script>

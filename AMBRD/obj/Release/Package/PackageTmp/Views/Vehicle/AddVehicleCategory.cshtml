@@ -1,0 +1,144 @@
+﻿@model AMBRD.Models.ViewModels.VehicleCategoryDTO
+@{
+    ViewBag.Title = "AddVehicleCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 1;
+}
+
+@using (Html.BeginForm("AddVehicleCategory", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-sidebar">
+
+            </div>
+
+            <div class="page-body">
+
+
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="page-header-left">
+                                    <h3>
+                                        Add Vehicle Category
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ol class="breadcrumb pull-right">
+                                    <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                    <li class="breadcrumb-item active">Add Banner</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row product-adding">
+                        <div class="col-xl-12">
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="digital-add needs-validation">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string msg = TempData["msg"].ToString();
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    @if (msg == "ok")
+                                                    {
+                                                        <div class="alert alert-success">
+                                                            Saved Successfully.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger">
+                                                            @msg
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+
+                                    <div class="form-group row">
+
+                                        <div class="col-xl-3 col-md-7">
+                                            @Html.TextBoxFor(a => a.CategoryName, new { @class = "form-control", placeholder = "Enter the Category Name",required="" })
+                                        </div>
+                                        <div class="col-xl-3 col-md-7">
+                                            <select id="AmbulanceType_id" name="AmbulanceType_id" class="form-control" , required="required">
+                                                <option value="">---Select---</option>
+                                                <option value="1">Regular</option>
+                                                <option value="2">Road Accident</option>
+                                                <option value="3">Funeral/MortuaryService</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-3 col-md-7">
+                                            <input type="submit" value="Submit" class="btn btn-secondary" style="margin-top:5px;" />
+                                        </div>
+                                        @if (Model.CategoryList == null)
+                                        {
+                                            <h2>@TempData["list"]</h2>
+                                        }
+                                        else
+                                        {
+                                            <table class="display" id="basic-1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S#</th>
+                                                        <th>Category Name</th>
+                                                        <th>Type</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.CategoryList)
+                                                    {
+                                                        <tr>
+                                                            <td>@i</td>
+                                                            <td>@item.CategoryName</td>
+                                                            <td>@item.Type</td>
+                                                            <td>
+                                                                <div>
+                                                                    <a href="/Vehicle/EditCategory?id=@item.Id" class="link-button edit-state" onclick="return confirm('Are you sure you want to edit?');">
+                                                                        <i class="fa fa-edit me-2 font-secondary"></i>
+                                                                    </a>
+                                                                    <a href="/Vehicle/DeleteCategory?id=@item.Id" class="link-button" onclick="return confirm('Are you sure you want to delete?');">
+                                                                        <i class="fa fa-trash font-danger"></i>
+                                                                    </a>
+                                                                   
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+                                    </div>
+
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+}
+

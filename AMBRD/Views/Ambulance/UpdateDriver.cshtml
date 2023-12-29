@@ -1,0 +1,113 @@
+﻿@model AMBRD.Models.ViewModels.VehicleAllotmentDTO
+@{
+    ViewBag.Title = "UpdateDriver";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <div class="page-sidebar">
+
+        </div>
+
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>
+                                    Update Driver
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                
+                                <li class="breadcrumb-item active">Swap Vehicle</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row product-adding">
+                    <div class="col-xl-6">
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="digital-add needs-validation">
+                                    @using (Html.BeginForm())
+                                    {
+                                        <div class="form-group row">
+                                            <div class="col-xl-4 col-md-5">
+                                                <label for="validationCustom2">Select Driver Name</label>
+                                            </div>
+                                            <div class="col-xl-4 col-md-7">
+                                                @Html.TextBoxFor(a => a.DriverName, new { @class = "form-control" })
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="submit" value="Update" class="btn btn-secondary">
+                                            </div>
+                                        </div>
+
+                                    }
+
+                                    @if (TempData["msg"] != null)
+                                    {
+                                        <h2 style="color:palevioletred">@TempData["msg"]</h2>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $("#DriverName").autocomplete({
+        source: function (request, response) {
+
+            $.ajax({
+                url: '/Ambulance/GetDriverName',
+                data: { term: request.term },
+                type: 'POST',
+                success: function (data) {
+                    if (!data.length) {
+                        debugger
+                        var result = [
+                            {
+                                label: 'No Driver found',
+                                value: response.term
+                            }
+                        ];
+                        response(result);
+                    }
+                    else {
+
+                        response($.map(data, function (item) {
+                            debugger
+                            id = item.Id
+                            console.log(id);
+                            return {
+                                label: item.DriverName,
+                                value: item.DriverName,
+                                id: item.Id,
+                            };
+                        }));
+                    }
+                }
+            });
+        },
+    });
+</script>
