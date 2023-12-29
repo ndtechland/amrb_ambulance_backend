@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/AMBRD/obj/Debug/AMBRD.csproj.AssemblyReference.cache
+/AMBRD/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
