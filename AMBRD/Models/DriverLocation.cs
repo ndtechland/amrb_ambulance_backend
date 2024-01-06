@@ -38,5 +38,6 @@ namespace AMBRD.Models
         public string offer { get; set; }
         public Nullable<bool> IsBooked { get; set; }
         public Nullable<int> NearDriverId { get; set; }
+        public Nullable<bool> RideComplete { get; set; }
     }
 }

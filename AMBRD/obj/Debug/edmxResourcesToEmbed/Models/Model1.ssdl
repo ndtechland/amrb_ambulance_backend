@@ -31,6 +31,7 @@
     <Property Name="Token" Type="nvarchar" MaxLength="250" />
     <Property Name="OTP" Type="int" />
     <Property Name="DeviceId" Type="nvarchar(max)" />
+    <Property Name="TransactionPwd" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Ambulance">
     <Key>
@@ -183,6 +184,7 @@
     <Property Name="Driver_Id" Type="int" />
     <Property Name="Patient_Id" Type="int" />
     <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsBooked" Type="bit" />
   </EntityType>
   <EntityType Name="DriverLocation">
     <Key>
@@ -212,6 +214,18 @@
     <Property Name="offer" Type="nvarchar" MaxLength="100" />
     <Property Name="IsBooked" Type="bit" />
     <Property Name="NearDriverId" Type="int" />
+    <Property Name="RideComplete" Type="bit" />
+  </EntityType>
+  <EntityType Name="DriverPayOut">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Driver_Id" Type="int" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="IsPaid" Type="bit" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="IsGenerated" Type="bit" />
   </EntityType>
   <EntityType Name="Gallery">
     <Key>
@@ -424,6 +438,7 @@
     <EntitySet Name="Driver" EntityType="Self.Driver" Schema="abdul_amurd" store:Type="Tables" />
     <EntitySet Name="DriverBooking" EntityType="Self.DriverBooking" Schema="abdul_amurd" store:Type="Tables" />
     <EntitySet Name="DriverLocation" EntityType="Self.DriverLocation" Schema="abdul_amurd" store:Type="Tables" />
+    <EntitySet Name="DriverPayOut" EntityType="Self.DriverPayOut" Schema="abdul_amurd" store:Type="Tables" />
     <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="abdul_amurd" store:Type="Tables" />
     <EntitySet Name="Hospital" EntityType="Self.Hospital" Schema="abdul_amurd" store:Type="Tables" />
     <EntitySet Name="NearDriver" EntityType="Self.NearDriver" Schema="abdul_amurd" store:Type="Tables" />

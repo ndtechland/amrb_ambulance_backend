@@ -18,4 +18,8 @@ namespace AMBRD.Models.ViewModels
         public string Token { get; set; }
         public string DeviceId { get; set; }
     }
+    public class TrasnsactionPwdRequestModel
+    {
+        public string Password { get; set; }
+    }
 }

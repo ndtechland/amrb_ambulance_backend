@@ -207,12 +207,16 @@ where a.IsDeleted=0 order by a.Id desc";
             ent.Database.ExecuteSqlCommand(qry);
             return RedirectToAction("All");
         }
-        public JsonResult GetVehicleNumberList(string term)
+        
+        public JsonResult GetVehicleNumberList(int vehicleTypeId, string term)
+        
         {
             var VehicleList = (from N in ent.Ambulances
                                where N.VehicleNumber.StartsWith(term)
                                && N.IsDeleted == false
+                               && N.VehicleType_Id == vehicleTypeId
                                select new { N.VehicleNumber, N.Id });
+
             return Json(VehicleList, JsonRequestBehavior.AllowGet);
         }
 

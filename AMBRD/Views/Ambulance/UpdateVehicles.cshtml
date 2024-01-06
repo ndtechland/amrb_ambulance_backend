@@ -4,9 +4,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <style>
-    .ui-menu-item
-    {
-        display:grid;
+    .ui-menu-item {
+        display: grid;
     }
 </style>
 @using (Html.BeginForm("UpdateVehicles", "Ambulance"))
@@ -53,7 +52,7 @@
                                                     <label for="validationCustom2">Select Any Type</label>
                                                 </div>
                                                 <div class="col-xl-4 col-md-7">
-                                                    @Html.DropDownListFor(a => a.Id, Model.VehicleList, "--Select Type--", new { @class = "form-control" ,required= "required" })
+                                                    @Html.DropDownListFor(a => a.Id, Model.VehicleList, "--Select Type--", new { @class = "form-control", required = "required" })
                                                 </div>
 
                                             </div>
@@ -91,32 +90,34 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script>
     $("#VehicleNumber").autocomplete({
         source: function (request, response) {
-            debugger
+            // Get the selected vehicle type ID from the dropdown list
+            var vehicleTypeId = $("#Id").val();
+
+            // If the selected value is not available, you might want to handle it
+            if (!vehicleTypeId) {
+                console.log("No vehicle type selected");
+                return;
+            }
+
             $.ajax({
-               /* url: '/Vehicle/GetVehicleNumber',*/
                 url: '/Ambulance/GetVehicleNumberList',
-                data: { term: request.term },
+                data: { term: request.term, vehicleTypeId: vehicleTypeId },
                 type: 'POST',
                 success: function (data) {
                     if (!data.length) {
-                        debugger
                         var result = [
-                         {
-                             label: 'No Vehicle found',
-                             value: response.term
-                         }
+                            {
+                                label: 'No Vehicle found',
+                                value: response.term
+                            }
                         ];
                         response(result);
-                    }
-                    else {
-
+                    } else {
                         response($.map(data, function (item) {
-                            debugger
-                            id = item.Id
-                            console.log(id);
                             return {
                                 label: item.VehicleNumber,
                                 value: item.VehicleNumber,
@@ -126,6 +127,7 @@
                     }
                 }
             });
-        },
-  });
+        }
+    });
 </script>
+

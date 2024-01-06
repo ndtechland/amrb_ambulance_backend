@@ -298,11 +298,10 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
                     IsPay = "N",
                     Status = "0",
                     IsBooked = false,
+                    RideComplete = false,
                     RejectedStatus = false,
                     TotalDistance = Convert.ToInt32(distance),
-                    //TotalPrice = Charge * Convert.ToInt32(distance),
                     TotalPrice = Charge,
-
                 };
                 ent.DriverLocations.Add(mod);
                 ent.SaveChanges();
@@ -342,7 +341,7 @@ dl.start_Long AS startLong,AL.DeviceId,dl.TotalPrice,dl.TotalDistance,dl.NoOfPas
 join DriverLocation as dl on dl.PatientId=db.Patient_Id
 join Patient AS P with(nolock) ON db.Patient_Id =P.Id
 join AdminLogin as AL on AL.Id=P.AdminLogin_Id 
-where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + "").ToList();
+where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + " order by dl.Id desc").ToList();
 
             return Ok(new { UserListForBookingAmbulance = data });
         }
@@ -363,7 +362,7 @@ where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + ""
         [HttpGet, Route("api/DriverApi/AmbulanceBookingHistory")]
         public IHttpActionResult AmbulanceBookingHistory(int DriverId)
         { 
-            string qry = @"select P.Id,P.PatientName,P.MobileNumber,sm.StateName,cm.CityName,P.PinCode,P.Location from DriverLocation as DL left join Patient as P on Dl.PatientId=P.Id left join citymaster as cm with(nolock) on cm.id=P.CityMaster_Id left join statemaster as sm with(nolock) on sm.id=P.StateMaster_Id left join Driver as D on D.Id=DL.Driver_Id where D.Id=" + DriverId + " and DL.IsPay='Y'";
+            string qry = @"select P.Id,P.PatientName,P.MobileNumber,sm.StateName,cm.CityName,P.PinCode,P.Location from DriverLocation as DL left join Patient as P on Dl.PatientId=P.Id left join citymaster as cm with(nolock) on cm.id=P.CityMaster_Id left join statemaster as sm with(nolock) on sm.id=P.StateMaster_Id left join Driver as D on D.Id=DL.Driver_Id where D.Id=" + DriverId + " and DL.IsPay='Y' and DL.RideComplete=1";
             var BookingHistory = ent.Database.SqlQuery<BookingHistory>(qry).ToList();
             return Ok(new { BookingHistory });
 
@@ -372,12 +371,12 @@ where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + ""
         [HttpGet, Route("api/DriverApi/DriverPaymentHistory")]
         public IHttpActionResult DriverPaymentHistory(int DriverId)
         {
-            string query = @"select P.Id,P.PatientName,P.MobileNumber,sm.StateName+','+cm.CityName+','+P.Location as Location,DL.Id as PaymentId,DL.TotalPrice,DL.PaymentDate,DL.IsPay from DriverLocation as DL 
+            string query = @"select P.Id,P.PatientName,P.MobileNumber,sm.StateName+','+cm.CityName+','+P.Location as Location,DL.Id as PaymentId,DL.TotalPrice,DL.PaymentDate,DL.IsPay,DL.start_Lat,DL.start_Long,DL.end_Lat,DL.end_Long from DriverLocation as DL 
 left join Patient as P on Dl.PatientId=P.Id 
 left join Driver as D on D.Id=DL.Driver_Id 
 join StateMaster sm on sm.Id=P.StateMaster_Id
 join CityMaster cm on cm.Id=P.CityMaster_Id
-where D.Id=" + DriverId + " and DL.IsPay='Y'";
+where D.Id=" + DriverId + " and DL.IsPay='Y' order by dl.Id desc";
             var PaymentHistory = ent.Database.SqlQuery<driverpayhistory>(query).ToList();
             return Ok(new { PaymentHistory });
 
@@ -441,6 +440,78 @@ WHERE D.[Status] = 0 and D.RejectedStatus=0 and op.Driver_Id=" + DriverId + "").
             data.Driver_Id = bookingAmbulanceAcceptRejectDTO.DriverId;
             ent.SaveChanges();
             return Ok("Request rejected successfully.");
+        }
+
+        [HttpGet, Route("api/DriverApi/GetOnGoingRide_UserDetail")]
+        public IHttpActionResult GetOnGoingRide_UserDetail(int DriverId)
+        {
+            var UserDetail = ent.Database.SqlQuery<UserdetailOngoingdriver>($"select DL.Id,P.Id as PatientId,P.PatientName,P.MobileNumber,sm.StateName+','+cm.CityName+','+P.Location as Location,DL.TotalPrice,DL.PaymentDate,DL.IsPay,DL.Lat_Driver,DL.Lang_Driver,DL.start_Lat,DL.start_Long,DL.end_Lat,DL.end_Long,DL.TotalDistance,al.DeviceId from DriverLocation as DL left join Patient as P on Dl.PatientId=P.Id left join Driver as D on D.Id=DL.Driver_Id join StateMaster sm on sm.Id=P.StateMaster_Id join CityMaster cm on cm.Id=P.CityMaster_Id JOIN AdminLogin al on al.Id=D.AdminLogin_Id where D.Id={DriverId} and DL.IsPay='Y' and DL.RideComplete='0' order by DL.Id desc").FirstOrDefault();
+            if (UserDetail != null)
+            {
+                // Driver
+                var lat1 = (double)UserDetail.Lat_Driver;
+                var lon1 = (double)UserDetail.Lang_Driver;
+
+                // User
+                var lat2 = (double)UserDetail.start_Lat;
+                var lon2 = (double)UserDetail.start_Long;
+
+                double rlat1 = Math.PI * lat1 / 180;
+                double rlat2 = Math.PI * lat2 / 180;
+                double theta = lon1 - lon2;
+                double rtheta = Math.PI * theta / 180;
+
+                double dist = Math.Sin(rlat1) * Math.Sin(rlat2) +
+                              Math.Cos(rlat1) * Math.Cos(rlat2) * Math.Cos(rtheta);
+
+                dist = Math.Acos(dist);
+                dist = dist * 180 / Math.PI;
+                dist = dist * 60 * 1.1515;
+                dist = dist * 1.609344;   // Convert miles to kilometers
+
+                UserDetail.DriverUserDistance = (int)dist;
+
+                // Calculate expected time
+
+                double expectedTimeMinutes = dist * 4; // 2 minutes per kilometer
+
+                // Convert the expectedTimeMinutes to an integer
+                int expectedTimeMinutesInt = Convert.ToInt32(expectedTimeMinutes);
+                if (expectedTimeMinutesInt == 0)
+                {
+                    expectedTimeMinutesInt = 5;
+                }
+                UserDetail.ExpectedTime = expectedTimeMinutesInt;
+
+            }
+
+            return Ok(UserDetail);
+        }
+
+        [HttpPost, Route("api/DriverApi/CompleteRide")]
+
+        public IHttpActionResult CompleteRide(DriverLocationDT model)
+        {
+            var data = ent.DriverLocations.Where(a => a.Id == model.Id).FirstOrDefault();
+            if(data != null)
+            {
+                data.RideComplete = true;
+            }
+            else
+            {
+                return BadRequest("Data not found.");
+            }
+            ent.SaveChanges();
+            return Ok("Your ride complete.");
+        }
+        [HttpGet, Route("api/DriverApi/DriverPayoutHistory")]
+        public IHttpActionResult DriverPayoutHistory(int DriverId)
+        {
+            string query = @"select dp.Id,d.DriverName,dp.PaymentDate as PayoutDate,dp.Amount from DriverPayOut as dp
+join Driver as d on d.Id=dp.Driver_Id where dp.Driver_Id="+ DriverId + " order by dp.Id desc";
+            var PayoutHistory = ent.Database.SqlQuery<PayoutHistory>(query).ToList();
+            return Ok(new { PayoutHistory });
+
         }
     }
 }

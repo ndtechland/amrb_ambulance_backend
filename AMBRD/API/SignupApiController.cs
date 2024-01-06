@@ -26,7 +26,6 @@ namespace AMBRD.API
         [System.Web.Http.Route("api/SignupApi/PatientRegistration")]
         public IHttpActionResult PatientRegistration(PatientDTO model)
         {
-
             try
             {
                 var rm = new ReturnMessage();
@@ -78,15 +77,14 @@ namespace AMBRD.API
 
                 string msg1 = "Welcome to AMBRD. Your User Name :  " + admin.Username + "(" + admin.UserID + "), Password : " + admin.Password + ".";
                 rm.Status = 1;
-                rm.Message = "Thanks for joining us.You have registered successfully but you can not login untill approved by ADMIN.";
+                rm.Message = "Thanks for joining us.You have registered successfully.";
                 return Ok(rm);
 
             }
             catch (Exception ex)
             {
                 return InternalServerError (ex);
-            }
-             
+            }             
         }
 
         [System.Web.Http.HttpPost]

@@ -18,5 +18,6 @@ namespace AMBRD.Models
         public Nullable<int> Driver_Id { get; set; }
         public Nullable<int> Patient_Id { get; set; }
         public Nullable<System.DateTime> EntryDate { get; set; }
+        public Nullable<bool> IsBooked { get; set; }
     }
 }

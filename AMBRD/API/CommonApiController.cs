@@ -302,9 +302,9 @@ namespace AMBRD.API
                     ent.SaveChanges();
 
                     string mobile = "918601703418";
-                    string msg = "Dear User, \n";
-                    msg += "Your OTP for login to AMBRD is " + otpValue + ". Valid for 30 minutes. Please do not share this OTP.\n";
-                    msg += "Regards,\n";
+                    string msg = "Dear User,";
+                    msg += "Your OTP for login to AMBRD is " + otpValue + ". Valid for 10 minutes. Please do not share this OTP.";
+                    msg += "Regards,";
                     msg += "AMBRD Team";
                     string dltid = "153995AnO2vKHdOPk59294dd7";
                     Utilities.Message.SendSms(model.MobileNumber, msg, dltid);

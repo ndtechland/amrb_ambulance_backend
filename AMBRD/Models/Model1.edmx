@@ -36,6 +36,7 @@
           <Property Name="Token" Type="nvarchar" MaxLength="250" />
           <Property Name="OTP" Type="int" />
           <Property Name="DeviceId" Type="nvarchar(max)" />
+          <Property Name="TransactionPwd" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Ambulance">
           <Key>
@@ -188,6 +189,7 @@
           <Property Name="Driver_Id" Type="int" />
           <Property Name="Patient_Id" Type="int" />
           <Property Name="EntryDate" Type="datetime" />
+          <Property Name="IsBooked" Type="bit" />
         </EntityType>
         <EntityType Name="DriverLocation">
           <Key>
@@ -217,6 +219,18 @@
           <Property Name="offer" Type="nvarchar" MaxLength="100" />
           <Property Name="IsBooked" Type="bit" />
           <Property Name="NearDriverId" Type="int" />
+          <Property Name="RideComplete" Type="bit" />
+        </EntityType>
+        <EntityType Name="DriverPayOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Driver_Id" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="IsGenerated" Type="bit" />
         </EntityType>
         <EntityType Name="Gallery">
           <Key>
@@ -429,6 +443,7 @@
           <EntitySet Name="Driver" EntityType="Self.Driver" Schema="abdul_amurd" store:Type="Tables" />
           <EntitySet Name="DriverBooking" EntityType="Self.DriverBooking" Schema="abdul_amurd" store:Type="Tables" />
           <EntitySet Name="DriverLocation" EntityType="Self.DriverLocation" Schema="abdul_amurd" store:Type="Tables" />
+          <EntitySet Name="DriverPayOut" EntityType="Self.DriverPayOut" Schema="abdul_amurd" store:Type="Tables" />
           <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="abdul_amurd" store:Type="Tables" />
           <EntitySet Name="Hospital" EntityType="Self.Hospital" Schema="abdul_amurd" store:Type="Tables" />
           <EntitySet Name="NearDriver" EntityType="Self.NearDriver" Schema="abdul_amurd" store:Type="Tables" />
@@ -487,6 +502,7 @@
           <Property Name="Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OTP" Type="Int32" />
           <Property Name="DeviceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionPwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Ambulance">
           <Key>
@@ -651,6 +667,7 @@
           <Property Name="offer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsBooked" Type="Boolean" />
           <Property Name="NearDriverId" Type="Int32" />
+          <Property Name="RideComplete" Type="Boolean" />
         </EntityType>
         <EntityType Name="Gallery">
           <Key>
@@ -873,6 +890,7 @@
           <EntitySet Name="UserOfferPrices" EntityType="abdul_amurdModel.UserOfferPrice" />
           <EntitySet Name="DriverBookings" EntityType="abdul_amurdModel.DriverBooking" />
           <EntitySet Name="CommissionMasters" EntityType="abdul_amurdModel.CommissionMaster" />
+          <EntitySet Name="DriverPayOuts" EntityType="abdul_amurdModel.DriverPayOut" />
         </EntityContainer>
         <ComplexType Name="GetNearDriver_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -904,6 +922,7 @@
           <Property Name="Driver_Id" Type="Int32" />
           <Property Name="Patient_Id" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="IsBooked" Type="Boolean" />
         </EntityType>
         <EntityType Name="CommissionMaster">
           <Key>
@@ -913,6 +932,17 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Commission" Type="Double" />
           <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DriverPayOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Driver_Id" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="IsGenerated" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -942,6 +972,7 @@
           <EntitySetMapping Name="AdminLogins">
             <EntityTypeMapping TypeName="abdul_amurdModel.AdminLogin">
               <MappingFragment StoreEntitySet="AdminLogin">
+                <ScalarProperty Name="TransactionPwd" ColumnName="TransactionPwd" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1100,6 +1131,7 @@
           <EntitySetMapping Name="DriverLocations">
             <EntityTypeMapping TypeName="abdul_amurdModel.DriverLocation">
               <MappingFragment StoreEntitySet="DriverLocation">
+                <ScalarProperty Name="RideComplete" ColumnName="RideComplete" />
                 <ScalarProperty Name="NearDriverId" ColumnName="NearDriverId" />
                 <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1320,6 +1352,7 @@
           <EntitySetMapping Name="DriverBookings">
             <EntityTypeMapping TypeName="abdul_amurdModel.DriverBooking">
               <MappingFragment StoreEntitySet="DriverBooking">
+                <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
                 <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
@@ -1333,6 +1366,18 @@
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Commission" ColumnName="Commission" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverPayOuts">
+            <EntityTypeMapping TypeName="abdul_amurdModel.DriverPayOut">
+              <MappingFragment StoreEntitySet="DriverPayOut">
+                <ScalarProperty Name="IsGenerated" ColumnName="IsGenerated" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

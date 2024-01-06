@@ -23,6 +23,7 @@
     <EntitySetMapping Name="AdminLogins">
       <EntityTypeMapping TypeName="abdul_amurdModel.AdminLogin">
         <MappingFragment StoreEntitySet="AdminLogin">
+          <ScalarProperty Name="TransactionPwd" ColumnName="TransactionPwd" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -181,6 +182,7 @@
     <EntitySetMapping Name="DriverLocations">
       <EntityTypeMapping TypeName="abdul_amurdModel.DriverLocation">
         <MappingFragment StoreEntitySet="DriverLocation">
+          <ScalarProperty Name="RideComplete" ColumnName="RideComplete" />
           <ScalarProperty Name="NearDriverId" ColumnName="NearDriverId" />
           <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -401,6 +403,7 @@
     <EntitySetMapping Name="DriverBookings">
       <EntityTypeMapping TypeName="abdul_amurdModel.DriverBooking">
         <MappingFragment StoreEntitySet="DriverBooking">
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
           <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
           <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
           <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
@@ -414,6 +417,18 @@
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="Commission" ColumnName="Commission" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverPayOuts">
+      <EntityTypeMapping TypeName="abdul_amurdModel.DriverPayOut">
+        <MappingFragment StoreEntitySet="DriverPayOut">
+          <ScalarProperty Name="IsGenerated" ColumnName="IsGenerated" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

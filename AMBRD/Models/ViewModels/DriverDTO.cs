@@ -203,4 +203,63 @@ namespace AMBRD.Models.ViewModels
         public Nullable<double> under301_350KM { get; set; } 
         public Nullable<double> Above500KM { get; set; }
     }
+
+    public class UserdetailOngoingdriver
+    {
+        public int Id { get; set; }
+        public int PatientId { get; set; }
+        public string PatientName { get; set; }
+        public string MobileNumber { get; set; }  
+        public Nullable<int> TotalPrice { get; set; } 
+        public Nullable<double> Lat_Driver { get; set; }
+        public Nullable<double> Lang_Driver { get; set; }  
+        public Nullable<double> start_Lat { get; set; }
+        public Nullable<double> start_Long { get; set; }
+        public Nullable<double> end_Lat { get; set; }
+        public Nullable<double> end_Long { get; set; }
+        public int DriverUserDistance { get; set; }
+        public int ExpectedTime { get; set; }
+        public Nullable<int> TotalDistance { get; set; }
+        public string DeviceId { get; set; }
+        //CODE FOR LAT LONG TO LOCATION 
+        public string PickupLocation
+        {
+            get { return getlocation(start_Lat.ToString(), start_Long.ToString()); }
+        }
+        public string DropLocation
+        {
+            get { return getlocation(end_Lat.ToString(), end_Long.ToString()); }
+        }
+
+        private string getlocation(string latitude, string longitude)
+        {
+            string url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyBrbWFXlOYpaq51wteSyFS2UjdMPOWBlQw";
+
+            // Make the HTTP request.
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "GET";
+            request.Timeout = 10000;
+
+            // Get the response.
+            WebResponse response = request.GetResponse();
+            string responseText = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+            // Parse the response JSON.
+            var json = JsonConvert.DeserializeObject<dynamic>(responseText);
+
+            // Get the location from the JSON.
+            var location = json.results[0].formatted_address;
+            return location;
+        }
+
+        //END CODE FOR LAT LONG TO LOCATION 
+
+    }
+    public class PayoutHistory
+    {
+        public int Id { get; set; }
+        public string DriverName { get; set; }
+        public Nullable<System.DateTime> PayoutDate { get; set; }
+        public Nullable<double> Amount { get; set; }
+    }
 }

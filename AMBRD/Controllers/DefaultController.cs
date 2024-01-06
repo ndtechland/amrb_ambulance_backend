@@ -269,5 +269,44 @@ namespace AMBRD.Controllers
                 throw new InvalidOperationException("Invalid or expired token");
             }
         }
+
+      [HttpGet]
+        public ActionResult TransactionLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TransactionLogin(TrasnsactionPwdRequestModel model)
+        {
+            try
+            {
+                var data = ent.AdminLogins.Where(a => a.TransactionPwd == model.Password && a.Role == "admin").FirstOrDefault();
+                if (data != null)
+                {
+                    return RedirectToAction("Payout");
+                }
+                else
+                {
+                    return Content("Invalid Transaction Password");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Server Error");
+            }
+        }
+
+        [HttpGet]
+        
+        public ActionResult Payout(bool IsApproved = false)
+        {
+            //if (IsApproved == false)
+            //{
+            //    TempData["msg"] = "You are not Authorised for this action.";
+            //    //return RedirectToAction("Unsuccess", "UnsuccessfulAttempt");
+            //}
+            return View();
+        }
     }
 }

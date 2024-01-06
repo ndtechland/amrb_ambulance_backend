@@ -24,5 +24,6 @@ namespace AMBRD.Models
         public string Token { get; set; }
         public Nullable<int> OTP { get; set; }
         public string DeviceId { get; set; }
+        public string TransactionPwd { get; set; }
     }
 }

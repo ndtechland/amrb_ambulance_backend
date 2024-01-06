@@ -1,0 +1,87 @@
+﻿@model AMBRD.Models.ViewModels.ViewPayoutHistory
+@{
+    ViewBag.Title = "ViewDriverPayoutHistory";
+    Layout = "~/Views/Shared/_PayoutLayoutPage.cshtml";
+    int i = 1;
+}
+
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="page-sidebar">
+
+        </div>
+        <!-- Page Sidebar Ends-->
+
+
+        <div class="page-body">
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>
+                                    Driver Payout History
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item active">Payout History</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                @*<div class="card-body vendor-table">*@
+                                <div class="card-body ">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>S#</th>
+                                                <th>Driver Name</th>
+                                                <th>Amount</th>
+                                                <th>Payment Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        @if (Model.HistoryOfAmbulance_Payout == null)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            <tbody>
+                                                @foreach (var item in Model.HistoryOfAmbulance_Payout)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td>
+                                                        <td>@item.DriverName</td>
+                                                        <td>@item.Amount</td>
+                                                        <td>@item.PaymentDate</td>
+                                                    </tr>
+                                                    i++;
+                                                }
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

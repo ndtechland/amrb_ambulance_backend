@@ -1,0 +1,108 @@
+﻿@model AMBRD.Models.ViewModels.AmbulancesReport
+@{
+    ViewBag.Title = "Driver";
+    Layout = "~/Views/Shared/_PayoutLayoutPage.cshtml";
+    int i = 1;
+}
+
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="page-sidebar">
+
+        </div>
+        <!-- Page Sidebar Ends-->
+
+
+        <div class="page-body">
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>
+                                    Driver Payout
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="/Default/Dashboard"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item active">Driver Payout</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-body ">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>S#</th>
+                                                <th>Driver Name</th>
+                                                <th>Vehicle Name</th>
+                                                <th>Vehicle Number</th>
+                                                <th>Amount</th>
+                                                <th>Commission in %</th>
+                                                <th>TDS in %</th>
+                                                <th>Payble Amount</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        @if (Model.AmbulanceData == null)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            <tbody>
+                                                @foreach (var item in Model.AmbulanceData)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td>
+                                                        <td>@item.DriverName</td>
+                                                        <td>@item.VehicleName</td>
+                                                        <td>@item.VehicleNumber</td>
+                                                        <td>@item.Amount</td>
+                                                        <td>@ViewBag.GetCommision</td>
+                                                        <td>10</td>
+                                                        @{
+
+                                                            double? commAmt = ((double)item.Amount * ViewBag.GetCommision) / 100;
+                                                            double? tdsamt = ((double)item.Amount * ViewBag.GetCommision) / 100;
+                                                            double? Value = (double)item.Amount - (commAmt + tdsamt);
+
+                                                        }
+
+                                                        <td>@Value</td>
+                                                        <td>
+                                                            <div>
+                                                                <a href="/Payout/DriverPay?Driver_Id=@item.Driver_Id&Amount=@Value" class="btn btn-primary">Pay</a>
+                                                                <a href="/Payout/ViewDriverPayoutHistory?Id=@item.Driver_Id" class="btn btn-primary">View Payout History</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    i++;
+                                                }
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -54,6 +54,7 @@ namespace AMBRD.Models
         public DbSet<UserOfferPrice> UserOfferPrices { get; set; }
         public DbSet<DriverBooking> DriverBookings { get; set; }
         public DbSet<CommissionMaster> CommissionMasters { get; set; }
+        public DbSet<DriverPayOut> DriverPayOuts { get; set; }
     
         public virtual int DeleteNearDriver()
         {

@@ -240,6 +240,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Controllers\loginCtrl.js" />
     <Content Include="assets\css\10.css" />
     <Content Include="assets\css\admin.css" />
     <Content Include="assets\css\animate.css" />
@@ -1652,6 +1653,7 @@
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PayoutController.cs" />
     <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1702,6 +1704,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DriverLocation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DriverPayOut.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gallery.cs">
@@ -1762,6 +1767,7 @@
     <Compile Include="Models\ViewModels\AdminLoginDTO.cs" />
     <Compile Include="Models\ViewModels\AmbulanceDTO.cs" />
     <Compile Include="Models\ViewModels\AmbulanceReportDTO.cs" />
+    <Compile Include="Models\ViewModels\AmbulancesReport.cs" />
     <Compile Include="Models\ViewModels\BannerDTO.cs" />
     <Compile Include="Models\ViewModels\BlogDTO.cs" />
     <Compile Include="Models\ViewModels\ChangepasswordDTO.cs" />
@@ -1778,6 +1784,7 @@
     <Compile Include="Models\ViewModels\VehicleAllotmentDTO.cs" />
     <Compile Include="Models\ViewModels\VehicleCategoryDTO.cs" />
     <Compile Include="Models\ViewModels\VehicleTypeDTO.cs" />
+    <Compile Include="Models\ViewModels\ViewPayoutHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommonRepository.cs" />
     <Compile Include="Utilities\FileOperation.cs" />
@@ -2087,6 +2094,11 @@
     <Content Include="Views\AmbulanceReport\YearlyRecord.cshtml" />
     <Content Include="Views\Common\Commision.cshtml" />
     <Content Include="Views\Common\EditCommission.cshtml" />
+    <Content Include="Views\Default\TransactionLogin.cshtml" />
+    <Content Include="Views\Shared\_PayoutLayoutPage.cshtml" />
+    <Content Include="Views\Default\Payout.cshtml" />
+    <Content Include="Views\Payout\Driver.cshtml" />
+    <Content Include="Views\Payout\ViewDriverPayoutHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2096,6 +2108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AmbulancesReport\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
