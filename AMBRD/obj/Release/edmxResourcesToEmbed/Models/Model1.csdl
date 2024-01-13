@@ -169,6 +169,7 @@
     <Property Name="Ambulance_Id" Type="Int32" />
     <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsBooked" Type="Boolean" />
   </EntityType>
   <EntityType Name="DriverLocation">
     <Key>

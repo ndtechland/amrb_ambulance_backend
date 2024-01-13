@@ -97,7 +97,13 @@ join CityMaster as cm on cm.Id=p.CityMaster_Id where p.Id=" + Id + "";
         [HttpGet, Route("api/PatientApi/GetAcceptedReqDriverDetail")]
         public IHttpActionResult GetAcceptedReqDriverDetail(int Id)
         {
-            string qry = @"SELECT DL.Id,D.Id AS DriverId,D.DriverName,D.MobileNumber,D.DlNumber,D.DriverImage,ND.TotalPrice,V.VehicleNumber,VT.VehicleTypeName,ND.TotalDistance,al.DeviceId,D.Lat as Lat_Driver,D.Long as Lang_Driver,DL.end_Lat,DL.end_Long FROM Driver as D INNER JOIN NearDriver AS ND ON ND.DriverId=D.Id INNER JOIN Ambulance AS V ON V.Driver_Id=D.Id INNER JOIN DriverLocation AS DL ON D.Id=DL.Driver_Id INNER JOIN VehicleType AS VT ON VT.Id=V.VehicleType_Id JOIN AdminLogin al on al.Id=D.AdminLogin_Id WHERE ND.Id=" + Id + " and DL.[Status]=1 and DL.IsPay='N' order by DL.Id desc";
+            string qry = @"SELECT DL.Id,D.Id AS DriverId,D.DriverName,D.MobileNumber,D.DlNumber,D.DriverImage,DL.TotalPrice,V.VehicleNumber,
+VT.VehicleTypeName,DL.TotalDistance,al.DeviceId,D.Lat as Lat_Driver,D.Long as Lang_Driver,DL.end_Lat,DL.end_Long FROM Driver as D  
+INNER JOIN Ambulance AS V ON V.Driver_Id=D.Id 
+INNER JOIN DriverLocation AS DL ON D.Id=DL.Driver_Id 
+INNER JOIN VehicleType AS VT ON VT.Id=V.VehicleType_Id 
+JOIN AdminLogin al on al.Id=D.AdminLogin_Id
+WHERE DL.PatientId=" + Id + " and DL.[Status]=1 and DL.IsPay='N' order by DL.Id desc";
             var data = ent.Database.SqlQuery<GetAcceptedReq_DriverDetail>(qry).FirstOrDefault();
             return Ok(data);
         }
@@ -236,7 +242,6 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
 
                 if (selectedDriver != null)
                 {
-                    // Update the driver's status to indicate that they are booked
                     selectedDriver.Driver_Id = model.Driver_Id;
                     selectedDriver.IsBooked = true;
                     selectedDriver.RejectedStatus = false; 
@@ -309,6 +314,20 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
             {
                 return BadRequest("Server Error");
             }
+        }
+
+        [HttpGet, Route("api/PatientApi/TrackDriver")]
+        public IHttpActionResult TrackDriver(int Id)
+        {
+            string qry = @"SELECT DL.Id,D.Id AS DriverId,D.DriverName,D.MobileNumber,D.DlNumber,D.DriverImage,DL.TotalPrice,V.VehicleNumber,
+VT.VehicleTypeName,DL.TotalDistance,al.DeviceId,D.Lat as Lat_Driver,D.Long as Lang_Driver,DL.end_Lat,DL.end_Long FROM Driver as D  
+INNER JOIN Ambulance AS V ON V.Driver_Id=D.Id 
+INNER JOIN DriverLocation AS DL ON D.Id=DL.Driver_Id 
+INNER JOIN VehicleType AS VT ON VT.Id=V.VehicleType_Id 
+JOIN AdminLogin al on al.Id=D.AdminLogin_Id
+WHERE DL.PatientId=" + Id + " and DL.IsPay='Y' and DL.RideComplete=0 order by DL.Id desc";
+            var data = ent.Database.SqlQuery<GetAcceptedReq_DriverDetail>(qry).FirstOrDefault();
+            return Ok(data);
         }
     }
 }

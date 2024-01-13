@@ -46,5 +46,6 @@ namespace AMBRD.Models
         public Nullable<int> Ambulance_Id { get; set; }
         public string Gender { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsBooked { get; set; }
     }
 }

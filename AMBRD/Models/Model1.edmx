@@ -180,6 +180,7 @@
           <Property Name="Ambulance_Id" Type="int" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="IsBooked" Type="bit" />
         </EntityType>
         <EntityType Name="DriverBooking">
           <Key>
@@ -638,6 +639,7 @@
           <Property Name="Ambulance_Id" Type="Int32" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsBooked" Type="Boolean" />
         </EntityType>
         <EntityType Name="DriverLocation">
           <Key>
@@ -1093,6 +1095,7 @@
           <EntitySetMapping Name="Drivers">
             <EntityTypeMapping TypeName="abdul_amurdModel.Driver">
               <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />

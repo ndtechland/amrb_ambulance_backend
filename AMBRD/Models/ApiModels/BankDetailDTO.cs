@@ -18,4 +18,15 @@ namespace AMBRD.Models.ApiModels
         public string CancelCheque { get; set; }
         public Nullable<bool> isverified { get; set; }
     }
+
+    public class GetBankDetail
+    {
+        public Nullable<int> Login_Id { get; set; }
+        public string AccountNumber { get; set; }
+        public string IFSCCode { get; set; }
+        public string BranchName { get; set; }
+        public string BranchAddress { get; set; }
+        public string HolderName { get; set; }
+        public string MobileNumber { get; set; }
+    }
 }

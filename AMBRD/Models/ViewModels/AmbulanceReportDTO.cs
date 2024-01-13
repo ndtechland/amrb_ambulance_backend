@@ -35,6 +35,7 @@ namespace AMBRD.Models.ViewModels
         public double end_Long { get; set; }
         public double start_Lat { get; set; }
         public double start_Long { get; set; }
+        public string EntryDate { get; set; }
 
         //CODE FOR LAT LONG TO LOCATION 
         public string ReverseStartLatLong_To_Location

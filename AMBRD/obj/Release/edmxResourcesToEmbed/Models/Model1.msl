@@ -144,6 +144,7 @@
     <EntitySetMapping Name="Drivers">
       <EntityTypeMapping TypeName="abdul_amurdModel.Driver">
         <MappingFragment StoreEntitySet="Driver">
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />

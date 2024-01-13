@@ -78,6 +78,7 @@ join CityMaster as cm on cm.Id=d.CityMaster_Id where d.Id=" + Id + "";
                 }
                 data.Lat = model.Lat;
                 data.Long = model.Long;
+                
                 ent.SaveChanges();
                 return Ok(new { Message = "Update Driver Location SuccessFully" });
             }
@@ -105,7 +106,7 @@ join CityMaster as cm on cm.Id=d.CityMaster_Id where d.Id=" + Id + "";
 INNER JOIN AdminLogin AS AL with(nolock) ON D.AdminLogin_Id = AL.Id
 INNER JOIN Ambulance as v on V.VehicleType_Id=d.VehicleType_id
 INNER JOIN VehicleType as vt on Vt.Id=v.VehicleType_id
-where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.VehicleType_id + " and D.IsApproved=1 and d.IsActive=1").ToList();
+where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.VehicleType_id + " and D.IsApproved=1 and d.IsActive=1 and d.IsBooked=0").ToList();
                 foreach (var item in Driver)
                 {
                     //==================USER AND DRIVER DISTANCE========================
@@ -281,7 +282,7 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
 
                    
                 }
-
+              
                 var mod = new DriverLocation()
                 {
                     Lat_Driver = DriveLat,
@@ -350,6 +351,10 @@ where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + " 
         public IHttpActionResult BookingAmbulanceAccept(BookingAmbulanceAcceptRejectDTO model)
         {
             var rm = new ReturnMessage();
+            var driverdata=ent.Drivers.Where(d=>d.Id==model.DriverId).FirstOrDefault();
+            driverdata.IsBooked= true;
+            ent.SaveChanges();
+
             var data = ent.DriverLocations.Where(a => a.Id == model.Id).FirstOrDefault();
             data.Status = model.StatusId;
             data.Driver_Id = model.DriverId; 
@@ -431,13 +436,17 @@ WHERE D.[Status] = 0 and D.RejectedStatus=0 and op.Driver_Id=" + DriverId + "").
         }
 
         [HttpPost, Route("api/DriverApi/AmbulanceReject")]
-        public IHttpActionResult AmbulanceReject(BookingAmbulanceAcceptRejectDTO bookingAmbulanceAcceptRejectDTO)
+        public IHttpActionResult AmbulanceReject(BookingAmbulanceAcceptRejectDTO model)
         {
-            var data = ent.DriverLocations.Where(a => a.Id == bookingAmbulanceAcceptRejectDTO.Id).FirstOrDefault();
+            var driverdata = ent.Drivers.Where(d => d.Id == model.DriverId).FirstOrDefault();
+            driverdata.IsBooked = false;
+            ent.SaveChanges();
+
+            var data = ent.DriverLocations.Where(a => a.Id == model.Id).FirstOrDefault();
             data.RejectedStatus = true;
             data.Status = "0";
             data.IsBooked = false;
-            data.Driver_Id = bookingAmbulanceAcceptRejectDTO.DriverId;
+            data.Driver_Id = model.DriverId;
             ent.SaveChanges();
             return Ok("Request rejected successfully.");
         }
@@ -445,7 +454,7 @@ WHERE D.[Status] = 0 and D.RejectedStatus=0 and op.Driver_Id=" + DriverId + "").
         [HttpGet, Route("api/DriverApi/GetOnGoingRide_UserDetail")]
         public IHttpActionResult GetOnGoingRide_UserDetail(int DriverId)
         {
-            var UserDetail = ent.Database.SqlQuery<UserdetailOngoingdriver>($"select DL.Id,P.Id as PatientId,P.PatientName,P.MobileNumber,sm.StateName+','+cm.CityName+','+P.Location as Location,DL.TotalPrice,DL.PaymentDate,DL.IsPay,DL.Lat_Driver,DL.Lang_Driver,DL.start_Lat,DL.start_Long,DL.end_Lat,DL.end_Long,DL.TotalDistance,al.DeviceId from DriverLocation as DL left join Patient as P on Dl.PatientId=P.Id left join Driver as D on D.Id=DL.Driver_Id join StateMaster sm on sm.Id=P.StateMaster_Id join CityMaster cm on cm.Id=P.CityMaster_Id JOIN AdminLogin al on al.Id=D.AdminLogin_Id where D.Id={DriverId} and DL.IsPay='Y' and DL.RideComplete='0' order by DL.Id desc").FirstOrDefault();
+            var UserDetail = ent.Database.SqlQuery<UserdetailOngoingdriver>($"select DL.Id,P.Id as PatientId,P.PatientName,P.MobileNumber,sm.StateName+','+cm.CityName+','+P.Location as Location,DL.TotalPrice,DL.PaymentDate,DL.IsPay,DL.Lat_Driver,DL.Lang_Driver,DL.start_Lat,DL.start_Long,DL.end_Lat,DL.end_Long,DL.TotalDistance,al.DeviceId from DriverLocation as DL left join Patient as P on Dl.PatientId=P.Id left join Driver as D on D.Id=DL.Driver_Id join StateMaster sm on sm.Id=P.StateMaster_Id join CityMaster cm on cm.Id=P.CityMaster_Id JOIN AdminLogin al on al.Id=P.AdminLogin_Id where D.Id={DriverId} and DL.IsPay='Y' and DL.RideComplete='0' order by DL.Id desc").FirstOrDefault();
             if (UserDetail != null)
             {
                 // Driver
@@ -492,10 +501,16 @@ WHERE D.[Status] = 0 and D.RejectedStatus=0 and op.Driver_Id=" + DriverId + "").
 
         public IHttpActionResult CompleteRide(DriverLocationDT model)
         {
-            var data = ent.DriverLocations.Where(a => a.Id == model.Id).FirstOrDefault();
+            
+            var data = ent.DriverLocations.Where(a => a.Id == model.Id && a.Driver_Id==model.DriverId).FirstOrDefault();
             if(data != null)
             {
                 data.RideComplete = true;
+
+                var driverdata = ent.Drivers.Where(d => d.Id == model.DriverId).FirstOrDefault();
+                driverdata.IsBooked = false;
+                ent.SaveChanges();
+
             }
             else
             {

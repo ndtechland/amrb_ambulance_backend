@@ -2,71 +2,101 @@
 @{
     ViewBag.Title = "Yearly";
     Layout = null;
+    int i = 1;
 }
+ 
+<!-- Datatable css-->
+<link rel="stylesheet" type="text/css" href="../assets/css/datatables.css">
 
-<style>
-    #main {
-        margin: 4%;
-    }
-</style>
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                @using (Html.BeginForm("Yearly", "AmbulanceReport", FormMethod.Get))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" id="year" class="form-control" placeholder="Enter Any Year" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="submit" id="test" value="Search" class="btn btn-secondary" />
+                                        </div>
+                                    </div>
+                                }
 
-<div id="main">
-
-    @using (Html.BeginForm())
-    {
-        <div class="row">
-            <div class="col-md-4">
-                <input type="text" id="year" class="form-control" placeholder="Enter Any Year" />
-            </div>
-            <div class="col-md-4">
-                <input type="button" id="test" value="Search" class="btn btn-secondary" />
+                                @if (Model.AmbulanceYMWDRecord == null)
+                                {
+                                    if (TempData["msg"] != null)
+                                    {
+                                        <h2 style="color:blueviolet">
+                                            @TempData["msg"]
+                                        </h2>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="card-body">
+                                        <table class="display" id="basic-1">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        S#
+                                                    </th>
+                                                    <th>
+                                                        Vehicle Number
+                                                    </th>
+                                                    <th>
+                                                        Vehicle Name
+                                                    </th>
+                                                    <th>
+                                                        Booking Date
+                                                    </th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.AmbulanceYMWDRecord)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @i
+                                                        </td>
+                                                        <td>
+                                                            @item.VehicleNumber
+                                                        </td>
+                                                        <td>
+                                                            @item.VehicleName
+                                                        </td>
+                                                        <td>
+                                                            @item.EntryDate
+                                                        </td>
+                                                        <td>
+                                                            <a href="/AmbulanceReport/YearlyRecord?Id=@item.Id">View Record</a>
+                                                        </td>
+                                                    </tr>
+                                                    i++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    }
-
-
-    @if (Model.AmbulanceYMWDRecord == null)
-    {
-        if (TempData["msg"] != null)
-        {
-            <h2 style="color:blueviolet">
-                @TempData["msg"]
-            </h2>
-        }
-    }
-    else
-    {
-        <table id="tables" class="table table-responsive">
-            <thead>
-                <tr>
-                    <th>
-                        Vehicle Number
-                    </th>
-                    <th>
-                        Vehicle Name
-                    </th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.AmbulanceYMWDRecord)
-                {
-                    <tr>
-                        <td>
-                            @item.VehicleNumber
-                        </td>
-                        <td>
-                            @item.VehicleName
-                        </td>
-                        <td>
-                            <a href="/AmbulanceReport/YearlyRecord?Id=@item.Id">View Record</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    </div>
 </div>
+
+<!-- Datatables js-->
+<script src="../assets/js/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/datatables/custom-basic.js"></script>
+
 <script src="~/assets/js/jquery-3.3.1.min.js"></script>
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-ui.js"></script>

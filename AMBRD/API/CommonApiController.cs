@@ -511,5 +511,19 @@ join CityMaster cm on cm.Id=h.CityMaster_Id";
                 return InternalServerError(new Exception("Internal server error."));
             }
         }
+
+        [HttpGet]
+        [Route("api/CommonApi/GetBankDetail")]
+        public IHttpActionResult GetBankDetail(int AdminLoginId)
+        {
+            string qry = @"select Login_Id,AccountNumber,IFSCCode,BranchName,BranchAddress,HolderName,MobileNumber from BankDetails Where Login_Id="+ AdminLoginId + "";
+            var BankDetail = ent.Database.SqlQuery<GetBankDetail>(qry).FirstOrDefault();
+
+            if (BankDetail == null)
+            {
+                return NotFound();
+            }
+            return Ok(BankDetail);
+        }
     }
 }
