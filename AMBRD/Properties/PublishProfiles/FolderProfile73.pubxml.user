@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Madhu\Publish\amb</_PublishTargetUrl>
-    <History>True|2024-01-12T11:10:49.3846652Z;True|2024-01-12T12:42:16.6925104+05:30;True|2024-01-12T12:26:27.6132956+05:30;</History>
+    <History>True|2024-01-18T12:24:21.2691174Z;True|2024-01-17T10:20:34.1581430+05:30;True|2024-01-13T15:38:00.0820489+05:30;True|2024-01-13T15:02:19.8941997+05:30;True|2024-01-12T16:40:49.3846652+05:30;True|2024-01-12T12:42:16.6925104+05:30;True|2024-01-12T12:26:27.6132956+05:30;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -4843,10 +4843,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/29/2023 11:56:52</publishTime>
     </File>
     <File Include="bin/AMBRD.dll">
-      <publishTime>01/12/2024 16:40:40</publishTime>
+      <publishTime>01/25/2024 18:19:57</publishTime>
     </File>
     <File Include="bin/AMBRD.pdb">
-      <publishTime>01/12/2024 16:40:40</publishTime>
+      <publishTime>01/25/2024 18:19:57</publishTime>
     </File>
     <File Include="bin/AutoMapper.dll">
       <publishTime>12/29/2023 11:57:08</publishTime>
@@ -5251,7 +5251,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/29/2023 11:56:50</publishTime>
     </File>
     <File Include="Views/Common/AddGallery.cshtml">
-      <publishTime>12/29/2023 11:56:50</publishTime>
+      <publishTime>01/18/2024 13:42:14</publishTime>
     </File>
     <File Include="Views/Common/AddTestimonial.cshtml">
       <publishTime>12/29/2023 11:56:50</publishTime>
@@ -5260,7 +5260,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/29/2023 11:56:50</publishTime>
     </File>
     <File Include="Views/Common/BlogList.cshtml">
-      <publishTime>12/29/2023 11:56:50</publishTime>
+      <publishTime>01/18/2024 13:46:22</publishTime>
     </File>
     <File Include="Views/Common/Commision.cshtml">
       <publishTime>12/29/2023 11:56:50</publishTime>
@@ -5271,11 +5271,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Common/EditCommission.cshtml">
       <publishTime>12/29/2023 11:56:50</publishTime>
     </File>
+    <File Include="Views/Common/EditGallery.cshtml">
+      <publishTime>01/18/2024 14:51:55</publishTime>
+    </File>
+    <File Include="Views/Common/EditOtherService.cshtml">
+      <publishTime>01/18/2024 18:09:27</publishTime>
+    </File>
+    <File Include="Views/Common/EditService.cshtml">
+      <publishTime>01/18/2024 13:40:45</publishTime>
+    </File>
     <File Include="Views/Common/GalleryList.cshtml">
-      <publishTime>12/29/2023 11:56:50</publishTime>
+      <publishTime>01/18/2024 13:46:48</publishTime>
     </File>
     <File Include="Views/Common/ListOtherService.cshtml">
-      <publishTime>12/29/2023 11:56:50</publishTime>
+      <publishTime>01/18/2024 13:47:33</publishTime>
     </File>
     <File Include="Views/Common/OtherService.cshtml">
       <publishTime>12/29/2023 11:56:50</publishTime>
@@ -5284,7 +5293,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/29/2023 11:56:50</publishTime>
     </File>
     <File Include="Views/Common/ServiceList.cshtml">
-      <publishTime>12/30/2023 10:34:08</publishTime>
+      <publishTime>01/18/2024 13:27:55</publishTime>
     </File>
     <File Include="Views/Common/TestimonialList.cshtml">
       <publishTime>12/29/2023 11:56:50</publishTime>

@@ -26,7 +26,7 @@ namespace AMBRD.API
         [Route("api/PatientApi/GetProfileDetail")]
         public IHttpActionResult GetProfileDetail(int Id)
         {
-            string qry = @"select p.Id,p.PatientName,p.EmailId,p.MobileNumber,sm.StateName,cm.CityName,p.Location,p.PinCode,p.Gender,p.DOB from Patient as p
+            string qry = @"select p.Id,p.PatientName,p.EmailId,p.MobileNumber,sm.StateName,cm.CityName,p.Location,p.PinCode,p.Gender,p.DOB,p.StateMaster_Id,p.CityMaster_Id from Patient as p
 join StateMaster as sm on sm.Id=p.StateMaster_Id
 join CityMaster as cm on cm.Id=p.CityMaster_Id where p.Id=" + Id + "";
             var Profile = ent.Database.SqlQuery<ProfileDetail>(qry).FirstOrDefault();
@@ -236,16 +236,16 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
             try
             {
                 // Check if the driver exists and is available (add your own logic)
-                var selectedDriver = ent.DriverLocations
-                        .OrderByDescending(d => d.Id)
-                        .FirstOrDefault(d => d.IsBooked==false && d.PatientId == model.Patient_Id);
+                //var selectedDriver = ent.DriverLocations
+                //        .OrderByDescending(d => d.Id)
+                //        .FirstOrDefault(d => d.IsBooked==false && d.PatientId == model.Patient_Id);
 
-                if (selectedDriver != null)
-                {
-                    selectedDriver.Driver_Id = model.Driver_Id;
-                    selectedDriver.IsBooked = true;
-                    selectedDriver.RejectedStatus = false; 
-                    ent.SaveChanges();
+                //if (selectedDriver != null)
+                //{
+                //    selectedDriver.Driver_Id = model.Driver_Id;
+                //    selectedDriver.IsBooked = true;
+                //    selectedDriver.RejectedStatus = false; 
+                //    ent.SaveChanges();
                 // Create a new booking record in your database
                 var booking = new DriverBooking
                     {
@@ -258,11 +258,11 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
                     ent.SaveChanges();
 
                     return Ok(new { Message = "Driver booked successfully"});
-                }
-                else
-                {
-                return BadRequest("Selected driver is not available for booking");
-                }
+                //}
+                //else
+                //{
+                //return BadRequest("Selected driver is not available for booking");
+                //}
             }
             catch (Exception)
             {
@@ -320,7 +320,7 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
         public IHttpActionResult TrackDriver(int Id)
         {
             string qry = @"SELECT DL.Id,D.Id AS DriverId,D.DriverName,D.MobileNumber,D.DlNumber,D.DriverImage,DL.TotalPrice,V.VehicleNumber,
-VT.VehicleTypeName,DL.TotalDistance,al.DeviceId,D.Lat as Lat_Driver,D.Long as Lang_Driver,DL.end_Lat,DL.end_Long FROM Driver as D  
+VT.VehicleTypeName,DL.TotalDistance,al.DeviceId,D.Lat as UpdatedDriverLat,D.Long as UpdatedDriverLang,DL.start_Lat as UserlocationLat,DL.start_Long as UserlocationLang,DL.Lat_Driver as DriverStartLat,DL.Lang_Driver as DriverStartLang FROM Driver as D  
 INNER JOIN Ambulance AS V ON V.Driver_Id=D.Id 
 INNER JOIN DriverLocation AS DL ON D.Id=DL.Driver_Id 
 INNER JOIN VehicleType AS VT ON VT.Id=V.VehicleType_Id 

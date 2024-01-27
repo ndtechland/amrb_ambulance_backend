@@ -30,7 +30,7 @@ namespace AMBRD.API
         [Route("api/DriverApi/GetDriverProfile")]
         public IHttpActionResult GetDriverProfile(int Id)
         {
-            string qry = @"select d.Id,d.DriverName,d.DriverImage,d.DOB,d.EmailId,d.MobileNumber,sm.StateName,cm.CityName,d.Location,d.PinCode from Driver as d
+            string qry = @"select d.Id,d.DriverName,d.DriverImage,d.DOB,d.EmailId,d.MobileNumber,sm.StateName,cm.CityName,d.Location,d.PinCode,d.StateMaster_Id,d.CityMaster_Id from Driver as d
 join StateMaster as sm on sm.Id=d.StateMaster_Id
 join CityMaster as cm on cm.Id=d.CityMaster_Id where d.Id=" + Id + "";
             var DriverProfile = ent.Database.SqlQuery<DriverProfileDetail>(qry).FirstOrDefault();
@@ -336,13 +336,22 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
         [HttpGet, Route("api/DriverApi/AmbulanceBookingRequest")]
         public IHttpActionResult AmbulanceBookingRequest(int DriverId)
         {
-            var data = ent.Database.SqlQuery<UserListForBookingAmbulance>(@"select distinct dl.Id,db.Driver_Id,db.Patient_Id as PatientId,P.PatientName, P.MobileNumber, 
-dl.end_Lat AS endLat,dl.end_Long As endLong,dl.start_Lat AS startLat,
-dl.start_Long AS startLong,AL.DeviceId,dl.TotalPrice,dl.TotalDistance,dl.NoOfPassengers from DriverBooking as db
-join DriverLocation as dl on dl.PatientId=db.Patient_Id
-join Patient AS P with(nolock) ON db.Patient_Id =P.Id
-join AdminLogin as AL on AL.Id=P.AdminLogin_Id 
-where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id=" + DriverId + " order by dl.Id desc").ToList();
+            //            var data = ent.Database.SqlQuery<UserListForBookingAmbulance>(@"select distinct db.Id,db.Driver_Id,db.Patient_Id as PatientId,P.PatientName, P.MobileNumber, 
+            //dl.end_Lat AS endLat,dl.end_Long As endLong,dl.start_Lat AS startLat,
+            //dl.start_Long AS startLong,AL.DeviceId,dl.TotalPrice,dl.TotalDistance,dl.NoOfPassengers from DriverBooking as db
+            //join DriverLocation as dl on dl.Driver_Id=db.Driver_Id
+            //join Patient AS P with(nolock) ON db.Patient_Id =P.Id
+            //join AdminLogin as AL on AL.Id=P.AdminLogin_Id 
+            //where dl.[Status] = 0 and dl.RejectedStatus=0 and db.Driver_Id="+ DriverId + " order by db.Id desc").ToList();
+
+            var data = ent.Database.SqlQuery<UserListForBookingAmbulance>(@"WITH RankedResults AS (SELECT dl.Id,db.Id as BookingId,db.Driver_Id,db.Patient_Id AS PatientId,P.PatientName,P.MobileNumber,dl.end_Lat AS endLat,dl.end_Long AS endLong,dl.start_Lat AS startLat,dl.start_Long AS startLong,AL.DeviceId,dl.TotalPrice,dl.TotalDistance,dl.NoOfPassengers,ROW_NUMBER() OVER (PARTITION BY db.Patient_Id, P.PatientName ORDER BY db.Id DESC) AS RowNum FROM DriverBooking AS db JOIN
+        DriverLocation AS dl ON dl.PatientId = db.Patient_Id
+    JOIN
+        Patient AS P WITH (NOLOCK) ON db.Patient_Id = P.Id
+    JOIN
+        AdminLogin AS AL ON AL.Id = P.AdminLogin_Id
+    WHERE
+        dl.[Status] = 0 AND dl.RejectedStatus = 0 AND db.Driver_Id = " + DriverId + ") SELECT Id,BookingId,Driver_Id,PatientId,PatientName,MobileNumber,endLat,endLong,startLat,startLong,DeviceId,TotalPrice,TotalDistance,NoOfPassengers FROM RankedResults WHERE RowNum = 1 ORDER BY BookingId DESC;").ToList();
 
             return Ok(new { UserListForBookingAmbulance = data });
         }
@@ -501,16 +510,14 @@ WHERE D.[Status] = 0 and D.RejectedStatus=0 and op.Driver_Id=" + DriverId + "").
 
         public IHttpActionResult CompleteRide(DriverLocationDT model)
         {
-            
+            var driverdata = ent.Drivers.Where(d => d.Id == model.DriverId).FirstOrDefault();
+            driverdata.IsBooked = false;
+            ent.SaveChanges();
+
             var data = ent.DriverLocations.Where(a => a.Id == model.Id && a.Driver_Id==model.DriverId).FirstOrDefault();
             if(data != null)
             {
-                data.RideComplete = true;
-
-                var driverdata = ent.Drivers.Where(d => d.Id == model.DriverId).FirstOrDefault();
-                driverdata.IsBooked = false;
-                ent.SaveChanges();
-
+                data.RideComplete = true; 
             }
             else
             {

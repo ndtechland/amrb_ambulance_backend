@@ -14,8 +14,7 @@ using System.Web.Http;
 using System.Web.Mvc; 
 
 namespace AMBRD.API
-{
-   
+{   
     public class SignupApiController : ApiController
     {
         abdul_amurdEntities11 ent= new abdul_amurdEntities11();
@@ -194,8 +193,7 @@ namespace AMBRD.API
 
                     }
                     model.DriverImage = DriverImage;
-                }
-
+                } 
 
                 var domainModel = new Driver();
                 domainModel.AdminLogin_Id = admin.Id;
@@ -228,15 +226,11 @@ namespace AMBRD.API
                 rm.Status = 1;
                 rm.Message = "Thanks for joining us.You have registered successfully but you can not login untill approved by ADMIN.";
                 return Ok(rm);
-
             }
             catch (Exception ex)
             {
                 return InternalServerError(ex);
             }
-
-        }
-
-        
+        }        
     }
 }

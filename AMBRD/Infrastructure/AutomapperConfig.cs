@@ -27,6 +27,15 @@ namespace AMBRD.Infrastructure
             Mapper.CreateMap<Blog, BlogDTO>();
             Mapper.CreateMap<BlogDTO, Blog>();
 
+            Mapper.CreateMap<OurService, ServiceDTO>();
+            Mapper.CreateMap<ServiceDTO, OurService>();
+
+            Mapper.CreateMap<OtherService, ServiceDTO>();
+            Mapper.CreateMap<ServiceDTO, OtherService>();
+
+            Mapper.CreateMap<Gallery, GalleryDTO>();
+            Mapper.CreateMap<GalleryDTO, Gallery>();
+
             Mapper.CreateMap<Hospital, HospitalDTO>();
             Mapper.CreateMap<HospitalDTO, Hospital>();
 

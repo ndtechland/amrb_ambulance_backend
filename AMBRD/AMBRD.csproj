@@ -2099,6 +2099,9 @@
     <Content Include="Views\Default\Payout.cshtml" />
     <Content Include="Views\Payout\Driver.cshtml" />
     <Content Include="Views\Payout\ViewDriverPayoutHistory.cshtml" />
+    <Content Include="Views\Common\EditService.cshtml" />
+    <Content Include="Views\Common\EditGallery.cshtml" />
+    <Content Include="Views\Common\EditOtherService.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

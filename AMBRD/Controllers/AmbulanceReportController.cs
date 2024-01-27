@@ -197,7 +197,7 @@ where Month(trm.EntryDate) = Month(GetDate()) and trm.IsPay='Y' and trm.RideComp
             {
                 if (data.Count() == 0)
                 {
-                    TempData["msg"] = "No Record of Current Date";
+                    TempData["msg"] = "No Record of Current Month";
                 }
                 else
                 {
@@ -295,7 +295,7 @@ where Year(trm.EntryDate) = Year(GetDate()) and trm.IsPay='Y' and trm.RideComple
             {
                 if (data.Count() == 0)
                 {
-                    TempData["msg"] = "No Record of Current Date";
+                    TempData["msg"] = "No Record of Current Year";
                 }
                 else
                 {

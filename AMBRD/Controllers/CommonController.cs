@@ -265,6 +265,57 @@ namespace AMBRD.Controllers
             model.ServeceList = data;
             return View(model);
         }
+        public ActionResult EditService(int id)
+        {
+            var data = ent.OurServices.Find(id);
+            Mapper.CreateMap<OurService, ServiceDTO>();
+            var model = Mapper.Map<ServiceDTO>(data);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditService(ServiceDTO model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
+                var data = ent.OurServices.Find(model.Id);
+                if (model.ImageFile != null)
+                {
+                    if (model.ImageFile.ContentLength > 2 * 1024 * 1024)
+                    {
+                        TempData["msg"] = "Image should not succeed 2 mb";
+                        return View(model);
+                    }
+                    var uploadResult = FileOperation.UploadImage(model.ImageFile, "Images");
+                    if (uploadResult == "not allowed")
+                    {
+                        TempData["msg"] = "Only .jpg,.jpeg,.png and .gif files are allowed";
+                        return View(model);
+                    }
+
+                    data.Image = uploadResult;
+
+                }
+                if (data != null)
+                {
+                    data.ServiceName = model.ServiceName;
+                    data.Description = model.Description;
+                    ent.SaveChanges();
+                    TempData["SuccessMessage"] = "Edit successfully";
+                }
+
+                ent.SaveChanges();
+                return RedirectToAction("ServiceList");
+            }
+            catch (Exception)
+            {
+                //log.Error(ex.Message);
+                TempData["msg"] = "Server Error";
+                return RedirectToAction("ServiceList", model.Id);
+            }
+        }
         public ActionResult Deleteservice(int id)
         {
             try
@@ -351,6 +402,57 @@ namespace AMBRD.Controllers
             return View(model);
         }
 
+        public ActionResult EditOtherService(int id)
+        {
+            var data = ent.OtherServices.Find(id);
+            Mapper.CreateMap<OtherService, ServiceDTO>();
+            var model = Mapper.Map<ServiceDTO>(data);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditOtherService(ServiceDTO model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
+                var data = ent.OtherServices.Find(model.Id);
+                if (model.ImageFile != null)
+                {
+                    if (model.ImageFile.ContentLength > 2 * 1024 * 1024)
+                    {
+                        TempData["msg"] = "Image should not succeed 2 mb";
+                        return View(model);
+                    }
+                    var uploadResult = FileOperation.UploadImage(model.ImageFile, "Images");
+                    if (uploadResult == "not allowed")
+                    {
+                        TempData["msg"] = "Only .jpg,.jpeg,.png and .gif files are allowed";
+                        return View(model);
+                    }
+
+                    data.Image = uploadResult;
+
+                }
+                if (data != null)
+                {
+                    data.ServiceName = model.ServiceName;
+                    data.Description = model.Description;
+                    ent.SaveChanges();
+                    TempData["SuccessMessage"] = "Edit successfully";
+                }
+
+                ent.SaveChanges();
+                return RedirectToAction("ListOtherService");
+            }
+            catch (Exception)
+            {
+                //log.Error(ex.Message);
+                TempData["msg"] = "Server Error";
+                return RedirectToAction("ListOtherService", model.Id);
+            }
+        }
         public ActionResult DeleteOtherservice(int id)
         {
             try
@@ -505,7 +607,7 @@ namespace AMBRD.Controllers
             {
                 //log.Error(ex.Message);
                 TempData["msg"] = "Server Error";
-                return RedirectToAction("EditSate", model.Id);
+                return RedirectToAction("BlogList", model.Id);
             }
         }
 
@@ -577,6 +679,57 @@ namespace AMBRD.Controllers
             }
             model.Gallerylist = data;
             return View(model);
+        }
+
+        public ActionResult EditGallery(int id)
+        {
+            var data = ent.Galleries.Find(id);
+            Mapper.CreateMap<Gallery, GalleryDTO>();
+            var model = Mapper.Map<GalleryDTO>(data);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditGallery(GalleryDTO model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
+                var data = ent.Galleries.Find(model.Id);
+                if (model.ImageFile != null)
+                {
+                    if (model.ImageFile.ContentLength > 2 * 1024 * 1024)
+                    {
+                        TempData["msg"] = "Image should not succeed 2 mb";
+                        return View(model);
+                    }
+                    var uploadResult = FileOperation.UploadImage(model.ImageFile, "Images");
+                    if (uploadResult == "not allowed")
+                    {
+                        TempData["msg"] = "Only .jpg,.jpeg,.png and .gif files are allowed";
+                        return View(model);
+                    }
+
+                    data.Image = uploadResult;
+
+                }
+                if (data != null)
+                {
+                    data.Content = model.Content;
+                    ent.SaveChanges();
+                    TempData["SuccessMessage"] = "Edit successfully";
+                }
+
+                ent.SaveChanges();
+                return RedirectToAction("GalleryList");
+            }
+            catch (Exception)
+            {
+                //log.Error(ex.Message);
+                TempData["msg"] = "Server Error";
+                return RedirectToAction("GalleryList", model.Id);
+            }
         }
 
         public ActionResult DeleteGallery(int id)

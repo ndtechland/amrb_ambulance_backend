@@ -64,6 +64,8 @@ namespace AMBRD.Models.ViewModels
             public string CityName { get; set; }
             public string DriverImage { get; set; }
             public Nullable<System.DateTime> DOB { get; set; }
+            public Nullable<int> StateMaster_Id { get; set; }
+            public Nullable<int> CityMaster_Id { get; set; }
 
 
         }

@@ -107,8 +107,12 @@ namespace AMBRD.Models.ApiModels
         public string DeviceId { get; set; }
         public Nullable<double> Lat_Driver { get; set; }
         public Nullable<double> Lang_Driver { get; set; }
-        public Nullable<double> end_Long { get; set; }
-        public Nullable<double> end_Lat { get; set; }
+        public Nullable<double> DriverStartLang { get; set; }
+        public Nullable<double> DriverStartLat { get; set; }
+        public Nullable<double> UserlocationLat { get; set; }
+        public Nullable<double> UserlocationLang { get; set; }
+        public Nullable<double> UpdatedDriverLat { get; set; }
+        public Nullable<double> UpdatedDriverLang { get; set; }
 
     }
     public class BookingHistory
