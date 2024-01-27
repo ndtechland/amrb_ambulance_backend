@@ -270,7 +270,7 @@ where D.Lat IS NOT NULL and D.Long IS NOT NULL and d.VehicleType_id=" + model.Ve
             }
         }
 
-        //Post Api send request all driver
+        //Post Api send request all driver//
         [HttpPost, Route("api/PatientApi/RequestToAll")]
         public IHttpActionResult RequestToAll(DriverLocationDT model)
         {
